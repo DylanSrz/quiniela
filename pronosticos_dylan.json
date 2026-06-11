@@ -1,0 +1,578 @@
+[
+  {
+    "match_id": 1,
+    "code": "A-J1-MÉX-SUD",
+    "home": "México",
+    "away": "Sudáfrica",
+    "pred_home": 2,
+    "pred_away": 0
+  },
+  {
+    "match_id": 2,
+    "code": "A-J1-COR-REP",
+    "home": "Corea del Sur",
+    "away": "República Checa",
+    "pred_home": 2,
+    "pred_away": 0
+  },
+  {
+    "match_id": 3,
+    "code": "B-J1-CAN-BOS",
+    "home": "Canadá",
+    "away": "Bosnia y Herzegovina",
+    "pred_home": 3,
+    "pred_away": 1
+  },
+  {
+    "match_id": 4,
+    "code": "D-J1-EST-PAR",
+    "home": "Estados Unidos",
+    "away": "Paraguay",
+    "pred_home": 3,
+    "pred_away": 1
+  },
+  {
+    "match_id": 5,
+    "code": "B-J1-CAT-SUI",
+    "home": "Catar",
+    "away": "Suiza",
+    "pred_home": 0,
+    "pred_away": 2
+  },
+  {
+    "match_id": 6,
+    "code": "C-J1-HAI-ESC",
+    "home": "Haití",
+    "away": "Escocia",
+    "pred_home": 1,
+    "pred_away": 3
+  },
+  {
+    "match_id": 7,
+    "code": "D-J1-AUS-TUR",
+    "home": "Australia",
+    "away": "Turquía",
+    "pred_home": 1,
+    "pred_away": 1
+  },
+  {
+    "match_id": 8,
+    "code": "E-J1-ALE-CUR",
+    "home": "Alemania",
+    "away": "Curazao",
+    "pred_home": 4,
+    "pred_away": 0
+  },
+  {
+    "match_id": 9,
+    "code": "C-J1-BRA-MAR",
+    "home": "Brasil",
+    "away": "Marruecos",
+    "pred_home": 1,
+    "pred_away": 1
+  },
+  {
+    "match_id": 10,
+    "code": "F-J1-PAÍ-JAP",
+    "home": "Países Bajos",
+    "away": "Japón",
+    "pred_home": 2,
+    "pred_away": 0
+  },
+  {
+    "match_id": 11,
+    "code": "E-J1-COS-ECU",
+    "home": "Costa de Marfil",
+    "away": "Ecuador",
+    "pred_home": 1,
+    "pred_away": 2
+  },
+  {
+    "match_id": 12,
+    "code": "F-J1-SUE-TÚN",
+    "home": "Suecia",
+    "away": "Túnez",
+    "pred_home": 1,
+    "pred_away": 1
+  },
+  {
+    "match_id": 13,
+    "code": "H-J1-ESP-CAB",
+    "home": "España",
+    "away": "Cabo Verde",
+    "pred_home": 4,
+    "pred_away": 1
+  },
+  {
+    "match_id": 14,
+    "code": "G-J1-BÉL-EGI",
+    "home": "Bélgica",
+    "away": "Egipto",
+    "pred_home": 2,
+    "pred_away": 1
+  },
+  {
+    "match_id": 15,
+    "code": "H-J1-ARA-URU",
+    "home": "Arabia Saudita",
+    "away": "Uruguay",
+    "pred_home": 0,
+    "pred_away": 2
+  },
+  {
+    "match_id": 16,
+    "code": "G-J1-IRÁ-NUE",
+    "home": "Irán",
+    "away": "Nueva Zelanda",
+    "pred_home": 3,
+    "pred_away": 1
+  },
+  {
+    "match_id": 17,
+    "code": "I-J1-FRA-SEN",
+    "home": "Francia",
+    "away": "Senegal",
+    "pred_home": 2,
+    "pred_away": 1
+  },
+  {
+    "match_id": 18,
+    "code": "I-J1-IRA-NOR",
+    "home": "Irak",
+    "away": "Noruega",
+    "pred_home": 0,
+    "pred_away": 2
+  },
+  {
+    "match_id": 19,
+    "code": "J-J1-ARG-ARG",
+    "home": "Argentina",
+    "away": "Argelia",
+    "pred_home": 3,
+    "pred_away": 1
+  },
+  {
+    "match_id": 20,
+    "code": "J-J1-AUS-JOR",
+    "home": "Austria",
+    "away": "Jordania",
+    "pred_home": 2,
+    "pred_away": 0
+  },
+  {
+    "match_id": 21,
+    "code": "K-J1-POR-RD ",
+    "home": "Portugal",
+    "away": "RD Congo",
+    "pred_home": 3,
+    "pred_away": 0
+  },
+  {
+    "match_id": 22,
+    "code": "L-J1-ING-CRO",
+    "home": "Inglaterra",
+    "away": "Croacia",
+    "pred_home": 2,
+    "pred_away": 0
+  },
+  {
+    "match_id": 23,
+    "code": "L-J1-GHA-PAN",
+    "home": "Ghana",
+    "away": "Panamá",
+    "pred_home": 0,
+    "pred_away": 2
+  },
+  {
+    "match_id": 24,
+    "code": "K-J1-UZB-COL",
+    "home": "Uzbekistán",
+    "away": "Colombia",
+    "pred_home": 1,
+    "pred_away": 3
+  },
+  {
+    "match_id": 25,
+    "code": "A-J2-REP-SUD",
+    "home": "República Checa",
+    "away": "Sudáfrica",
+    "pred_home": 1,
+    "pred_away": 0
+  },
+  {
+    "match_id": 26,
+    "code": "B-J2-SUI-BOS",
+    "home": "Suiza",
+    "away": "Bosnia y Herzegovina",
+    "pred_home": 3,
+    "pred_away": 1
+  },
+  {
+    "match_id": 27,
+    "code": "B-J2-CAN-CAT",
+    "home": "Canadá",
+    "away": "Catar",
+    "pred_home": 2,
+    "pred_away": 1
+  },
+  {
+    "match_id": 28,
+    "code": "A-J2-MÉX-COR",
+    "home": "México",
+    "away": "Corea del Sur",
+    "pred_home": 2,
+    "pred_away": 1
+  },
+  {
+    "match_id": 29,
+    "code": "D-J2-EST-AUS",
+    "home": "Estados Unidos",
+    "away": "Australia",
+    "pred_home": 2,
+    "pred_away": 0
+  },
+  {
+    "match_id": 30,
+    "code": "C-J2-ESC-MAR",
+    "home": "Escocia",
+    "away": "Marruecos",
+    "pred_home": 0,
+    "pred_away": 2
+  },
+  {
+    "match_id": 31,
+    "code": "C-J2-BRA-HAI",
+    "home": "Brasil",
+    "away": "Haití",
+    "pred_home": 4,
+    "pred_away": 1
+  },
+  {
+    "match_id": 32,
+    "code": "D-J2-TUR-PAR",
+    "home": "Turquía",
+    "away": "Paraguay",
+    "pred_home": 1,
+    "pred_away": 0
+  },
+  {
+    "match_id": 33,
+    "code": "F-J2-PAÍ-SUE",
+    "home": "Países Bajos",
+    "away": "Suecia",
+    "pred_home": 3,
+    "pred_away": 1
+  },
+  {
+    "match_id": 34,
+    "code": "E-J2-ALE-COS",
+    "home": "Alemania",
+    "away": "Costa de Marfil",
+    "pred_home": 2,
+    "pred_away": 0
+  },
+  {
+    "match_id": 35,
+    "code": "E-J2-ECU-CUR",
+    "home": "Ecuador",
+    "away": "Curazao",
+    "pred_home": 3,
+    "pred_away": 1
+  },
+  {
+    "match_id": 36,
+    "code": "F-J2-TÚN-JAP",
+    "home": "Túnez",
+    "away": "Japón",
+    "pred_home": 1,
+    "pred_away": 2
+  },
+  {
+    "match_id": 37,
+    "code": "H-J2-ESP-ARA",
+    "home": "España",
+    "away": "Arabia Saudita",
+    "pred_home": 4,
+    "pred_away": 1
+  },
+  {
+    "match_id": 38,
+    "code": "G-J2-BÉL-IRÁ",
+    "home": "Bélgica",
+    "away": "Irán",
+    "pred_home": 2,
+    "pred_away": 1
+  },
+  {
+    "match_id": 39,
+    "code": "H-J2-URU-CAB",
+    "home": "Uruguay",
+    "away": "Cabo Verde",
+    "pred_home": 3,
+    "pred_away": 0
+  },
+  {
+    "match_id": 40,
+    "code": "G-J2-NUE-EGI",
+    "home": "Nueva Zelanda",
+    "away": "Egipto",
+    "pred_home": 1,
+    "pred_away": 3
+  },
+  {
+    "match_id": 41,
+    "code": "J-J2-ARG-AUS",
+    "home": "Argentina",
+    "away": "Austria",
+    "pred_home": 3,
+    "pred_away": 1
+  },
+  {
+    "match_id": 42,
+    "code": "I-J2-FRA-IRA",
+    "home": "Francia",
+    "away": "Irak",
+    "pred_home": 4,
+    "pred_away": 0
+  },
+  {
+    "match_id": 43,
+    "code": "I-J2-NOR-SEN",
+    "home": "Noruega",
+    "away": "Senegal",
+    "pred_home": 0,
+    "pred_away": 2
+  },
+  {
+    "match_id": 44,
+    "code": "J-J2-JOR-ARG",
+    "home": "Jordania",
+    "away": "Argelia",
+    "pred_home": 1,
+    "pred_away": 2
+  },
+  {
+    "match_id": 45,
+    "code": "K-J2-POR-UZB",
+    "home": "Portugal",
+    "away": "Uzbekistán",
+    "pred_home": 3,
+    "pred_away": 0
+  },
+  {
+    "match_id": 46,
+    "code": "L-J2-ING-GHA",
+    "home": "Inglaterra",
+    "away": "Ghana",
+    "pred_home": 4,
+    "pred_away": 1
+  },
+  {
+    "match_id": 47,
+    "code": "L-J2-PAN-CRO",
+    "home": "Panamá",
+    "away": "Croacia",
+    "pred_home": 1,
+    "pred_away": 2
+  },
+  {
+    "match_id": 48,
+    "code": "K-J2-COL-RD ",
+    "home": "Colombia",
+    "away": "RD Congo",
+    "pred_home": 3,
+    "pred_away": 1
+  },
+  {
+    "match_id": 49,
+    "code": "B-J3-SUI-CAN",
+    "home": "Suiza",
+    "away": "Canadá",
+    "pred_home": 2,
+    "pred_away": 1
+  },
+  {
+    "match_id": 50,
+    "code": "B-J3-BOS-CAT",
+    "home": "Bosnia y Herzegovina",
+    "away": "Catar",
+    "pred_home": 0,
+    "pred_away": 1
+  },
+  {
+    "match_id": 51,
+    "code": "C-J3-ESC-BRA",
+    "home": "Escocia",
+    "away": "Brasil",
+    "pred_home": 0,
+    "pred_away": 2
+  },
+  {
+    "match_id": 52,
+    "code": "C-J3-MAR-HAI",
+    "home": "Marruecos",
+    "away": "Haití",
+    "pred_home": 4,
+    "pred_away": 1
+  },
+  {
+    "match_id": 53,
+    "code": "A-J3-REP-MÉX",
+    "home": "República Checa",
+    "away": "México",
+    "pred_home": 0,
+    "pred_away": 2
+  },
+  {
+    "match_id": 54,
+    "code": "A-J3-SUD-COR",
+    "home": "Sudáfrica",
+    "away": "Corea del Sur",
+    "pred_home": 0,
+    "pred_away": 2
+  },
+  {
+    "match_id": 55,
+    "code": "E-J3-CUR-COS",
+    "home": "Curazao",
+    "away": "Costa de Marfil",
+    "pred_home": 0,
+    "pred_away": 2
+  },
+  {
+    "match_id": 56,
+    "code": "E-J3-ECU-ALE",
+    "home": "Ecuador",
+    "away": "Alemania",
+    "pred_home": 0,
+    "pred_away": 2
+  },
+  {
+    "match_id": 57,
+    "code": "F-J3-JAP-SUE",
+    "home": "Japón",
+    "away": "Suecia",
+    "pred_home": 2,
+    "pred_away": 0
+  },
+  {
+    "match_id": 58,
+    "code": "F-J3-TÚN-PAÍ",
+    "home": "Túnez",
+    "away": "Países Bajos",
+    "pred_home": 0,
+    "pred_away": 2
+  },
+  {
+    "match_id": 59,
+    "code": "D-J3-TUR-EST",
+    "home": "Turquía",
+    "away": "Estados Unidos",
+    "pred_home": 1,
+    "pred_away": 2
+  },
+  {
+    "match_id": 60,
+    "code": "D-J3-PAR-AUS",
+    "home": "Paraguay",
+    "away": "Australia",
+    "pred_home": 0,
+    "pred_away": 1
+  },
+  {
+    "match_id": 61,
+    "code": "I-J3-NOR-FRA",
+    "home": "Noruega",
+    "away": "Francia",
+    "pred_home": 0,
+    "pred_away": 3
+  },
+  {
+    "match_id": 62,
+    "code": "I-J3-SEN-IRA",
+    "home": "Senegal",
+    "away": "Irak",
+    "pred_home": 3,
+    "pred_away": 1
+  },
+  {
+    "match_id": 63,
+    "code": "H-J3-CAB-ARA",
+    "home": "Cabo Verde",
+    "away": "Arabia Saudita",
+    "pred_home": 1,
+    "pred_away": 2
+  },
+  {
+    "match_id": 64,
+    "code": "H-J3-URU-ESP",
+    "home": "Uruguay",
+    "away": "España",
+    "pred_home": 0,
+    "pred_away": 2
+  },
+  {
+    "match_id": 65,
+    "code": "G-J3-EGI-IRÁ",
+    "home": "Egipto",
+    "away": "Irán",
+    "pred_home": 0,
+    "pred_away": 1
+  },
+  {
+    "match_id": 66,
+    "code": "G-J3-NUE-BÉL",
+    "home": "Nueva Zelanda",
+    "away": "Bélgica",
+    "pred_home": 1,
+    "pred_away": 4
+  },
+  {
+    "match_id": 67,
+    "code": "L-J3-PAN-ING",
+    "home": "Panamá",
+    "away": "Inglaterra",
+    "pred_home": 1,
+    "pred_away": 3
+  },
+  {
+    "match_id": 68,
+    "code": "L-J3-CRO-GHA",
+    "home": "Croacia",
+    "away": "Ghana",
+    "pred_home": 3,
+    "pred_away": 0
+  },
+  {
+    "match_id": 69,
+    "code": "K-J3-COL-POR",
+    "home": "Colombia",
+    "away": "Portugal",
+    "pred_home": 0,
+    "pred_away": 1
+  },
+  {
+    "match_id": 70,
+    "code": "K-J3-RD -UZB",
+    "home": "RD Congo",
+    "away": "Uzbekistán",
+    "pred_home": 0,
+    "pred_away": 0
+  },
+  {
+    "match_id": 71,
+    "code": "J-J3-ARG-AUS",
+    "home": "Argelia",
+    "away": "Austria",
+    "pred_home": 0,
+    "pred_away": 0
+  },
+  {
+    "match_id": 72,
+    "code": "J-J3-JOR-ARG",
+    "home": "Jordania",
+    "away": "Argentina",
+    "pred_home": 0,
+    "pred_away": 4
+  }
+]

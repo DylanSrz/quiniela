@@ -1,0 +1,722 @@
+[
+  {
+    "id": 1,
+    "code": "A-J1-MÉX-SUD",
+    "group": "A",
+    "jornada": "J1",
+    "date": "2026-06-11",
+    "time_local_bogota": "21:00",
+    "home": "México",
+    "away": "Sudáfrica"
+  },
+  {
+    "id": 2,
+    "code": "A-J1-COR-REP",
+    "group": "A",
+    "jornada": "J1",
+    "date": "2026-06-12",
+    "time_local_bogota": "04:00",
+    "home": "Corea del Sur",
+    "away": "República Checa"
+  },
+  {
+    "id": 3,
+    "code": "B-J1-CAN-BOS",
+    "group": "B",
+    "jornada": "J1",
+    "date": "2026-06-12",
+    "time_local_bogota": "21:00",
+    "home": "Canadá",
+    "away": "Bosnia y Herzegovina"
+  },
+  {
+    "id": 4,
+    "code": "D-J1-EST-PAR",
+    "group": "D",
+    "jornada": "J1",
+    "date": "2026-06-13",
+    "time_local_bogota": "03:00",
+    "home": "Estados Unidos",
+    "away": "Paraguay"
+  },
+  {
+    "id": 5,
+    "code": "B-J1-CAT-SUI",
+    "group": "B",
+    "jornada": "J1",
+    "date": "2026-06-13",
+    "time_local_bogota": "21:00",
+    "home": "Catar",
+    "away": "Suiza"
+  },
+  {
+    "id": 6,
+    "code": "C-J1-HAI-ESC",
+    "group": "C",
+    "jornada": "J1",
+    "date": "2026-06-14",
+    "time_local_bogota": "03:00",
+    "home": "Haití",
+    "away": "Escocia"
+  },
+  {
+    "id": 7,
+    "code": "D-J1-AUS-TUR",
+    "group": "D",
+    "jornada": "J1",
+    "date": "2026-06-14",
+    "time_local_bogota": "06:00",
+    "home": "Australia",
+    "away": "Turquía"
+  },
+  {
+    "id": 8,
+    "code": "E-J1-ALE-CUR",
+    "group": "E",
+    "jornada": "J1",
+    "date": "2026-06-14",
+    "time_local_bogota": "19:00",
+    "home": "Alemania",
+    "away": "Curazao"
+  },
+  {
+    "id": 9,
+    "code": "C-J1-BRA-MAR",
+    "group": "C",
+    "jornada": "J1",
+    "date": "2026-06-14",
+    "time_local_bogota": "21:00",
+    "home": "Brasil",
+    "away": "Marruecos"
+  },
+  {
+    "id": 10,
+    "code": "F-J1-PAÍ-JAP",
+    "group": "F",
+    "jornada": "J1",
+    "date": "2026-06-14",
+    "time_local_bogota": "22:00",
+    "home": "Países Bajos",
+    "away": "Japón"
+  },
+  {
+    "id": 11,
+    "code": "E-J1-COS-ECU",
+    "group": "E",
+    "jornada": "J1",
+    "date": "2026-06-15",
+    "time_local_bogota": "01:00",
+    "home": "Costa de Marfil",
+    "away": "Ecuador"
+  },
+  {
+    "id": 12,
+    "code": "F-J1-SUE-TÚN",
+    "group": "F",
+    "jornada": "J1",
+    "date": "2026-06-15",
+    "time_local_bogota": "04:00",
+    "home": "Suecia",
+    "away": "Túnez"
+  },
+  {
+    "id": 13,
+    "code": "H-J1-ESP-CAB",
+    "group": "H",
+    "jornada": "J1",
+    "date": "2026-06-15",
+    "time_local_bogota": "18:00",
+    "home": "España",
+    "away": "Cabo Verde"
+  },
+  {
+    "id": 14,
+    "code": "G-J1-BÉL-EGI",
+    "group": "G",
+    "jornada": "J1",
+    "date": "2026-06-15",
+    "time_local_bogota": "21:00",
+    "home": "Bélgica",
+    "away": "Egipto"
+  },
+  {
+    "id": 15,
+    "code": "H-J1-ARA-URU",
+    "group": "H",
+    "jornada": "J1",
+    "date": "2026-06-16",
+    "time_local_bogota": "00:00",
+    "home": "Arabia Saudita",
+    "away": "Uruguay"
+  },
+  {
+    "id": 16,
+    "code": "G-J1-IRÁ-NUE",
+    "group": "G",
+    "jornada": "J1",
+    "date": "2026-06-16",
+    "time_local_bogota": "03:00",
+    "home": "Irán",
+    "away": "Nueva Zelanda"
+  },
+  {
+    "id": 17,
+    "code": "I-J1-FRA-SEN",
+    "group": "I",
+    "jornada": "J1",
+    "date": "2026-06-16",
+    "time_local_bogota": "21:00",
+    "home": "Francia",
+    "away": "Senegal"
+  },
+  {
+    "id": 18,
+    "code": "I-J1-IRA-NOR",
+    "group": "I",
+    "jornada": "J1",
+    "date": "2026-06-17",
+    "time_local_bogota": "00:00",
+    "home": "Irak",
+    "away": "Noruega"
+  },
+  {
+    "id": 19,
+    "code": "J-J1-ARG-ARG",
+    "group": "J",
+    "jornada": "J1",
+    "date": "2026-06-17",
+    "time_local_bogota": "03:00",
+    "home": "Argentina",
+    "away": "Argelia"
+  },
+  {
+    "id": 20,
+    "code": "J-J1-AUS-JOR",
+    "group": "J",
+    "jornada": "J1",
+    "date": "2026-06-17",
+    "time_local_bogota": "06:00",
+    "home": "Austria",
+    "away": "Jordania"
+  },
+  {
+    "id": 21,
+    "code": "K-J1-POR-RD ",
+    "group": "K",
+    "jornada": "J1",
+    "date": "2026-06-17",
+    "time_local_bogota": "19:00",
+    "home": "Portugal",
+    "away": "RD Congo"
+  },
+  {
+    "id": 22,
+    "code": "L-J1-ING-CRO",
+    "group": "L",
+    "jornada": "J1",
+    "date": "2026-06-17",
+    "time_local_bogota": "22:00",
+    "home": "Inglaterra",
+    "away": "Croacia"
+  },
+  {
+    "id": 23,
+    "code": "L-J1-GHA-PAN",
+    "group": "L",
+    "jornada": "J1",
+    "date": "2026-06-18",
+    "time_local_bogota": "01:00",
+    "home": "Ghana",
+    "away": "Panamá"
+  },
+  {
+    "id": 24,
+    "code": "K-J1-UZB-COL",
+    "group": "K",
+    "jornada": "J1",
+    "date": "2026-06-18",
+    "time_local_bogota": "04:00",
+    "home": "Uzbekistán",
+    "away": "Colombia"
+  },
+  {
+    "id": 25,
+    "code": "A-J2-REP-SUD",
+    "group": "A",
+    "jornada": "J2",
+    "date": "2026-06-18",
+    "time_local_bogota": "18:00",
+    "home": "República Checa",
+    "away": "Sudáfrica"
+  },
+  {
+    "id": 26,
+    "code": "B-J2-SUI-BOS",
+    "group": "B",
+    "jornada": "J2",
+    "date": "2026-06-18",
+    "time_local_bogota": "21:00",
+    "home": "Suiza",
+    "away": "Bosnia y Herzegovina"
+  },
+  {
+    "id": 27,
+    "code": "B-J2-CAN-CAT",
+    "group": "B",
+    "jornada": "J2",
+    "date": "2026-06-19",
+    "time_local_bogota": "00:00",
+    "home": "Canadá",
+    "away": "Catar"
+  },
+  {
+    "id": 28,
+    "code": "A-J2-MÉX-COR",
+    "group": "A",
+    "jornada": "J2",
+    "date": "2026-06-19",
+    "time_local_bogota": "03:00",
+    "home": "México",
+    "away": "Corea del Sur"
+  },
+  {
+    "id": 29,
+    "code": "D-J2-EST-AUS",
+    "group": "D",
+    "jornada": "J2",
+    "date": "2026-06-19",
+    "time_local_bogota": "21:00",
+    "home": "Estados Unidos",
+    "away": "Australia"
+  },
+  {
+    "id": 30,
+    "code": "C-J2-ESC-MAR",
+    "group": "C",
+    "jornada": "J2",
+    "date": "2026-06-20",
+    "time_local_bogota": "00:00",
+    "home": "Escocia",
+    "away": "Marruecos"
+  },
+  {
+    "id": 31,
+    "code": "C-J2-BRA-HAI",
+    "group": "C",
+    "jornada": "J2",
+    "date": "2026-06-20",
+    "time_local_bogota": "02:30",
+    "home": "Brasil",
+    "away": "Haití"
+  },
+  {
+    "id": 32,
+    "code": "D-J2-TUR-PAR",
+    "group": "D",
+    "jornada": "J2",
+    "date": "2026-06-20",
+    "time_local_bogota": "05:00",
+    "home": "Turquía",
+    "away": "Paraguay"
+  },
+  {
+    "id": 33,
+    "code": "F-J2-PAÍ-SUE",
+    "group": "F",
+    "jornada": "J2",
+    "date": "2026-06-20",
+    "time_local_bogota": "19:00",
+    "home": "Países Bajos",
+    "away": "Suecia"
+  },
+  {
+    "id": 34,
+    "code": "E-J2-ALE-COS",
+    "group": "E",
+    "jornada": "J2",
+    "date": "2026-06-20",
+    "time_local_bogota": "22:00",
+    "home": "Alemania",
+    "away": "Costa de Marfil"
+  },
+  {
+    "id": 35,
+    "code": "E-J2-ECU-CUR",
+    "group": "E",
+    "jornada": "J2",
+    "date": "2026-06-21",
+    "time_local_bogota": "02:00",
+    "home": "Ecuador",
+    "away": "Curazao"
+  },
+  {
+    "id": 36,
+    "code": "F-J2-TÚN-JAP",
+    "group": "F",
+    "jornada": "J2",
+    "date": "2026-06-21",
+    "time_local_bogota": "06:00",
+    "home": "Túnez",
+    "away": "Japón"
+  },
+  {
+    "id": 37,
+    "code": "H-J2-ESP-ARA",
+    "group": "H",
+    "jornada": "J2",
+    "date": "2026-06-21",
+    "time_local_bogota": "18:00",
+    "home": "España",
+    "away": "Arabia Saudita"
+  },
+  {
+    "id": 38,
+    "code": "G-J2-BÉL-IRÁ",
+    "group": "G",
+    "jornada": "J2",
+    "date": "2026-06-21",
+    "time_local_bogota": "21:00",
+    "home": "Bélgica",
+    "away": "Irán"
+  },
+  {
+    "id": 39,
+    "code": "H-J2-URU-CAB",
+    "group": "H",
+    "jornada": "J2",
+    "date": "2026-06-22",
+    "time_local_bogota": "00:00",
+    "home": "Uruguay",
+    "away": "Cabo Verde"
+  },
+  {
+    "id": 40,
+    "code": "G-J2-NUE-EGI",
+    "group": "G",
+    "jornada": "J2",
+    "date": "2026-06-22",
+    "time_local_bogota": "03:00",
+    "home": "Nueva Zelanda",
+    "away": "Egipto"
+  },
+  {
+    "id": 41,
+    "code": "J-J2-ARG-AUS",
+    "group": "J",
+    "jornada": "J2",
+    "date": "2026-06-22",
+    "time_local_bogota": "19:00",
+    "home": "Argentina",
+    "away": "Austria"
+  },
+  {
+    "id": 42,
+    "code": "I-J2-FRA-IRA",
+    "group": "I",
+    "jornada": "J2",
+    "date": "2026-06-22",
+    "time_local_bogota": "23:00",
+    "home": "Francia",
+    "away": "Irak"
+  },
+  {
+    "id": 43,
+    "code": "I-J2-NOR-SEN",
+    "group": "I",
+    "jornada": "J2",
+    "date": "2026-06-23",
+    "time_local_bogota": "02:00",
+    "home": "Noruega",
+    "away": "Senegal"
+  },
+  {
+    "id": 44,
+    "code": "J-J2-JOR-ARG",
+    "group": "J",
+    "jornada": "J2",
+    "date": "2026-06-23",
+    "time_local_bogota": "05:00",
+    "home": "Jordania",
+    "away": "Argelia"
+  },
+  {
+    "id": 45,
+    "code": "K-J2-POR-UZB",
+    "group": "K",
+    "jornada": "J2",
+    "date": "2026-06-23",
+    "time_local_bogota": "19:00",
+    "home": "Portugal",
+    "away": "Uzbekistán"
+  },
+  {
+    "id": 46,
+    "code": "L-J2-ING-GHA",
+    "group": "L",
+    "jornada": "J2",
+    "date": "2026-06-23",
+    "time_local_bogota": "22:00",
+    "home": "Inglaterra",
+    "away": "Ghana"
+  },
+  {
+    "id": 47,
+    "code": "L-J2-PAN-CRO",
+    "group": "L",
+    "jornada": "J2",
+    "date": "2026-06-24",
+    "time_local_bogota": "01:00",
+    "home": "Panamá",
+    "away": "Croacia"
+  },
+  {
+    "id": 48,
+    "code": "K-J2-COL-RD ",
+    "group": "K",
+    "jornada": "J2",
+    "date": "2026-06-24",
+    "time_local_bogota": "04:00",
+    "home": "Colombia",
+    "away": "RD Congo"
+  },
+  {
+    "id": 49,
+    "code": "B-J3-SUI-CAN",
+    "group": "B",
+    "jornada": "J3",
+    "date": "2026-06-24",
+    "time_local_bogota": "21:00",
+    "home": "Suiza",
+    "away": "Canadá"
+  },
+  {
+    "id": 50,
+    "code": "B-J3-BOS-CAT",
+    "group": "B",
+    "jornada": "J3",
+    "date": "2026-06-24",
+    "time_local_bogota": "21:00",
+    "home": "Bosnia y Herzegovina",
+    "away": "Catar"
+  },
+  {
+    "id": 51,
+    "code": "C-J3-ESC-BRA",
+    "group": "C",
+    "jornada": "J3",
+    "date": "2026-06-25",
+    "time_local_bogota": "00:00",
+    "home": "Escocia",
+    "away": "Brasil"
+  },
+  {
+    "id": 52,
+    "code": "C-J3-MAR-HAI",
+    "group": "C",
+    "jornada": "J3",
+    "date": "2026-06-25",
+    "time_local_bogota": "00:00",
+    "home": "Marruecos",
+    "away": "Haití"
+  },
+  {
+    "id": 53,
+    "code": "A-J3-REP-MÉX",
+    "group": "A",
+    "jornada": "J3",
+    "date": "2026-06-25",
+    "time_local_bogota": "03:00",
+    "home": "República Checa",
+    "away": "México"
+  },
+  {
+    "id": 54,
+    "code": "A-J3-SUD-COR",
+    "group": "A",
+    "jornada": "J3",
+    "date": "2026-06-25",
+    "time_local_bogota": "03:00",
+    "home": "Sudáfrica",
+    "away": "Corea del Sur"
+  },
+  {
+    "id": 55,
+    "code": "E-J3-CUR-COS",
+    "group": "E",
+    "jornada": "J3",
+    "date": "2026-06-25",
+    "time_local_bogota": "22:00",
+    "home": "Curazao",
+    "away": "Costa de Marfil"
+  },
+  {
+    "id": 56,
+    "code": "E-J3-ECU-ALE",
+    "group": "E",
+    "jornada": "J3",
+    "date": "2026-06-25",
+    "time_local_bogota": "22:00",
+    "home": "Ecuador",
+    "away": "Alemania"
+  },
+  {
+    "id": 57,
+    "code": "F-J3-JAP-SUE",
+    "group": "F",
+    "jornada": "J3",
+    "date": "2026-06-26",
+    "time_local_bogota": "01:00",
+    "home": "Japón",
+    "away": "Suecia"
+  },
+  {
+    "id": 58,
+    "code": "F-J3-TÚN-PAÍ",
+    "group": "F",
+    "jornada": "J3",
+    "date": "2026-06-26",
+    "time_local_bogota": "01:00",
+    "home": "Túnez",
+    "away": "Países Bajos"
+  },
+  {
+    "id": 59,
+    "code": "D-J3-TUR-EST",
+    "group": "D",
+    "jornada": "J3",
+    "date": "2026-06-26",
+    "time_local_bogota": "04:00",
+    "home": "Turquía",
+    "away": "Estados Unidos"
+  },
+  {
+    "id": 60,
+    "code": "D-J3-PAR-AUS",
+    "group": "D",
+    "jornada": "J3",
+    "date": "2026-06-26",
+    "time_local_bogota": "04:00",
+    "home": "Paraguay",
+    "away": "Australia"
+  },
+  {
+    "id": 61,
+    "code": "I-J3-NOR-FRA",
+    "group": "I",
+    "jornada": "J3",
+    "date": "2026-06-26",
+    "time_local_bogota": "21:00",
+    "home": "Noruega",
+    "away": "Francia"
+  },
+  {
+    "id": 62,
+    "code": "I-J3-SEN-IRA",
+    "group": "I",
+    "jornada": "J3",
+    "date": "2026-06-26",
+    "time_local_bogota": "21:00",
+    "home": "Senegal",
+    "away": "Irak"
+  },
+  {
+    "id": 63,
+    "code": "H-J3-CAB-ARA",
+    "group": "H",
+    "jornada": "J3",
+    "date": "2026-06-27",
+    "time_local_bogota": "02:00",
+    "home": "Cabo Verde",
+    "away": "Arabia Saudita"
+  },
+  {
+    "id": 64,
+    "code": "H-J3-URU-ESP",
+    "group": "H",
+    "jornada": "J3",
+    "date": "2026-06-27",
+    "time_local_bogota": "02:00",
+    "home": "Uruguay",
+    "away": "España"
+  },
+  {
+    "id": 65,
+    "code": "G-J3-EGI-IRÁ",
+    "group": "G",
+    "jornada": "J3",
+    "date": "2026-06-27",
+    "time_local_bogota": "05:00",
+    "home": "Egipto",
+    "away": "Irán"
+  },
+  {
+    "id": 66,
+    "code": "G-J3-NUE-BÉL",
+    "group": "G",
+    "jornada": "J3",
+    "date": "2026-06-27",
+    "time_local_bogota": "05:00",
+    "home": "Nueva Zelanda",
+    "away": "Bélgica"
+  },
+  {
+    "id": 67,
+    "code": "L-J3-PAN-ING",
+    "group": "L",
+    "jornada": "J3",
+    "date": "2026-06-27",
+    "time_local_bogota": "23:00",
+    "home": "Panamá",
+    "away": "Inglaterra"
+  },
+  {
+    "id": 68,
+    "code": "L-J3-CRO-GHA",
+    "group": "L",
+    "jornada": "J3",
+    "date": "2026-06-27",
+    "time_local_bogota": "23:00",
+    "home": "Croacia",
+    "away": "Ghana"
+  },
+  {
+    "id": 69,
+    "code": "K-J3-COL-POR",
+    "group": "K",
+    "jornada": "J3",
+    "date": "2026-06-28",
+    "time_local_bogota": "01:30",
+    "home": "Colombia",
+    "away": "Portugal"
+  },
+  {
+    "id": 70,
+    "code": "K-J3-RD -UZB",
+    "group": "K",
+    "jornada": "J3",
+    "date": "2026-06-28",
+    "time_local_bogota": "01:30",
+    "home": "RD Congo",
+    "away": "Uzbekistán"
+  },
+  {
+    "id": 71,
+    "code": "J-J3-ARG-AUS",
+    "group": "J",
+    "jornada": "J3",
+    "date": "2026-06-28",
+    "time_local_bogota": "04:00",
+    "home": "Argelia",
+    "away": "Austria"
+  },
+  {
+    "id": 72,
+    "code": "J-J3-JOR-ARG",
+    "group": "J",
+    "jornada": "J3",
+    "date": "2026-06-28",
+    "time_local_bogota": "04:00",
+    "home": "Jordania",
+    "away": "Argentina"
+  }
+]

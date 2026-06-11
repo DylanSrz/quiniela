@@ -1,0 +1,6 @@
+Coloca aquí los 8 archivos .xlsx de los participantes (uno por persona).
+
+El nombre del archivo se usará como nombre del participante.
+Ejemplos: "Juan.xlsx", "Andrés.xlsx", "Carlos.xlsx".
+
+Luego avísame y corro:  node scripts/load-pronosticos.mjs
