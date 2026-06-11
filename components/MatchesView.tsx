@@ -155,15 +155,16 @@ function MatchCard({
 
 function PointsBadge({ points }: { points: number | null }) {
   if (points === null || points === undefined) return null;
-  const map = {
-    3: "bg-exacto/20 text-exacto",
-    1: "bg-resultado/20 text-resultado",
-    0: "bg-white/10 text-muted",
-  } as const;
-  const cls = map[points as 0 | 1 | 3] ?? map[0];
+  const pts = Number(points);
+  const cls =
+    pts === 3
+      ? "bg-exacto/20 text-exacto"
+      : pts > 0
+        ? "bg-resultado/20 text-resultado"
+        : "bg-white/10 text-muted";
   return (
-    <span className={`w-7 rounded px-1 text-center text-xs font-bold ${cls}`}>
-      {points}
+    <span className={`w-8 rounded px-1 text-center text-xs font-bold ${cls}`}>
+      {pts}
     </span>
   );
 }

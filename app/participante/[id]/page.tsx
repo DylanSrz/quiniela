@@ -33,13 +33,13 @@ export default async function ParticipantePage({
     (preds ?? []).map((p) => [p.match_id, p as Prediction])
   );
 
-  const total = (preds ?? []).reduce((s, p) => s + (p.points ?? 0), 0);
+  const total = (preds ?? []).reduce((s, p) => s + Number(p.points ?? 0), 0);
 
   // Acumulado por jornada para la gráfica de evolución.
   const porJornada = JORNADAS.map((j) => {
     const pts = matches
       .filter((m) => m.jornada === j && m.finished)
-      .reduce((s, m) => s + (predByMatch.get(m.id)?.points ?? 0), 0);
+      .reduce((s, m) => s + Number(predByMatch.get(m.id)?.points ?? 0), 0);
     return { jornada: j, pts };
   });
   const maxJ = Math.max(1, ...porJornada.map((x) => x.pts));
@@ -88,7 +88,7 @@ export default async function ParticipantePage({
             .filter((m) => m.jornada === j)
             .sort((a, b) => a.kickoff_utc.localeCompare(b.kickoff_utc));
           const subtotal = ms.reduce(
-            (s, m) => s + (predByMatch.get(m.id)?.points ?? 0),
+            (s, m) => s + Number(predByMatch.get(m.id)?.points ?? 0),
             0
           );
           return (
@@ -145,16 +145,17 @@ function Points({
   points: number | null;
   finished: boolean;
 }) {
-  if (!finished) return <span className="w-7 text-center text-muted">·</span>;
-  const map: Record<number, string> = {
-    3: "bg-exacto/20 text-exacto",
-    1: "bg-resultado/20 text-resultado",
-    0: "bg-white/10 text-muted",
-  };
-  const cls = map[points ?? 0] ?? map[0];
+  if (!finished) return <span className="w-8 text-center text-muted">·</span>;
+  const pts = Number(points ?? 0);
+  const cls =
+    pts === 3
+      ? "bg-exacto/20 text-exacto"
+      : pts > 0
+        ? "bg-resultado/20 text-resultado"
+        : "bg-white/10 text-muted";
   return (
-    <span className={`w-7 rounded px-1 text-center text-xs font-bold ${cls}`}>
-      {points ?? 0}
+    <span className={`w-8 rounded px-1 text-center text-xs font-bold ${cls}`}>
+      {pts}
     </span>
   );
 }

@@ -84,8 +84,8 @@ export default async function HomePage() {
           </div>
 
           <p className="mt-3 text-xs text-muted">
-            Marcador exacto = 3 pts · resultado acertado = 1 pt. Desempate: más 🎯,
-            luego más ✓.
+            Marcador exacto = 3 pts · ganador acertado = 1.5 · empate acertado = 1
+            pt. Desempate: más 🎯, luego más ✓.
           </p>
         </>
       )}

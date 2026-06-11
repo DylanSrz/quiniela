@@ -33,8 +33,9 @@ ingresa resultados. El resto de la web es pública y de solo lectura.
 
 | Acierto | Puntos |
 |---|---|
-| Marcador exacto | 3 |
-| Solo resultado (G-E-P) | 1 |
+| Marcador exacto (victoria o empate) | 3 |
+| Ganador acertado (sin marcador exacto) | 1.5 |
+| Empate acertado (sin marcador exacto) | 1 |
 | Nada | 0 |
 
 El cálculo lo hace un trigger en Postgres al guardar cada resultado; la tabla de

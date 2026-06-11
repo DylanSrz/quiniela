@@ -101,8 +101,10 @@ const finished = new Map(
 
 function pointsFor(ph, pa, m) {
   if (!m || m.home_goals === null || m.away_goals === null) return null;
-  if (ph === m.home_goals && pa === m.away_goals) return 3;
-  if (Math.sign(ph - pa) === Math.sign(m.home_goals - m.away_goals)) return 1;
+  if (ph === m.home_goals && pa === m.away_goals) return 3; // exacto
+  if (m.home_goals === m.away_goals && ph === pa) return 1; // empate acertado
+  if (m.home_goals !== m.away_goals && Math.sign(ph - pa) === Math.sign(m.home_goals - m.away_goals))
+    return 1.5; // ganador acertado
   return 0;
 }
 

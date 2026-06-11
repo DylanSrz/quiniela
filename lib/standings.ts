@@ -21,10 +21,11 @@ export function computeStandings(
     if (pred.points === null || pred.points === undefined) continue;
     const row = byParticipant.get(pred.participant_id);
     if (!row) continue;
-    row.points += pred.points;
+    const pts = Number(pred.points);
+    row.points += pts;
     row.jugados += 1;
-    if (pred.points === 3) row.exactos += 1;
-    else if (pred.points === 1) row.resultados += 1;
+    if (pts === 3) row.exactos += 1;
+    else if (pts > 0) row.resultados += 1; // ganador (1.5) o empate (1)
   }
 
   return [...byParticipant.values()].sort(
@@ -37,13 +38,16 @@ export function computeStandings(
 }
 
 // Puntos de un pronóstico contra un resultado (misma lógica que el trigger SQL).
+// exacto=3, ganador acertado=1.5, empate acertado=1, nada=0.
 export function scoreOf(
   predHome: number,
   predAway: number,
   home: number,
   away: number
-): 0 | 1 | 3 {
+): number {
   if (predHome === home && predAway === away) return 3;
-  if (Math.sign(predHome - predAway) === Math.sign(home - away)) return 1;
+  if (home === away && predHome === predAway) return 1;
+  if (home !== away && Math.sign(predHome - predAway) === Math.sign(home - away))
+    return 1.5;
   return 0;
 }

@@ -3,6 +3,7 @@
 import { revalidatePath } from "next/cache";
 import { supabaseAdmin } from "@/lib/supabase";
 import { isAdmin } from "@/lib/auth";
+import { scoreOf } from "@/lib/standings";
 
 async function assertAdmin() {
   if (!(await isAdmin())) throw new Error("No autorizado");
@@ -146,14 +147,7 @@ export async function upsertPredictions(
     const res = results.get(p.match_id);
     let points: number | null = null;
     if (res && res.home_goals !== null && res.away_goals !== null) {
-      if (p.pred_home === res.home_goals && p.pred_away === res.away_goals)
-        points = 3;
-      else if (
-        Math.sign(p.pred_home - p.pred_away) ===
-        Math.sign(res.home_goals - res.away_goals)
-      )
-        points = 1;
-      else points = 0;
+      points = scoreOf(p.pred_home, p.pred_away, res.home_goals, res.away_goals);
     }
     return { ...p, points };
   });
