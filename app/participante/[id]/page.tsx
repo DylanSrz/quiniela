@@ -3,13 +3,12 @@ import { notFound } from "next/navigation";
 import { supabasePublic } from "@/lib/supabase";
 import { getMatches } from "@/lib/data";
 import { flagFor } from "@/lib/teams";
-import { fmtDateTime } from "@/lib/format";
+import { JORNADAS } from "@/lib/constants";
 import LiveRefresh from "@/components/LiveRefresh";
+import EvolutionChart from "@/components/EvolutionChart";
 import type { Participant, Prediction } from "@/lib/types";
 
-export const revalidate = 30;
-
-const JORNADAS = ["J1", "J2", "J3"] as const;
+export const dynamic = "force-dynamic";
 
 export default async function ParticipantePage({
   params,
@@ -42,7 +41,6 @@ export default async function ParticipantePage({
       .reduce((s, m) => s + Number(predByMatch.get(m.id)?.points ?? 0), 0);
     return { jornada: j, pts };
   });
-  const maxJ = Math.max(1, ...porJornada.map((x) => x.pts));
 
   return (
     <main className="mx-auto w-full max-w-3xl flex-1 px-4 py-6">
@@ -64,22 +62,11 @@ export default async function ParticipantePage({
         </div>
       </header>
 
-      <section className="mt-5 rounded-2xl border border-white/10 bg-surface p-4">
+      <section className="mt-5 rounded-2xl glass p-4">
         <h2 className="mb-3 text-xs uppercase tracking-wide text-muted">
           Evolución por jornada
         </h2>
-        <div className="flex items-end gap-3">
-          {porJornada.map((x) => (
-            <div key={x.jornada} className="flex flex-1 flex-col items-center gap-1">
-              <span className="font-display text-sm font-bold text-gold">{x.pts}</span>
-              <div
-                className="w-full rounded-t bg-grass/70"
-                style={{ height: `${8 + (x.pts / maxJ) * 80}px` }}
-              />
-              <span className="text-xs text-muted">{x.jornada}</span>
-            </div>
-          ))}
-        </div>
+        <EvolutionChart data={porJornada} />
       </section>
 
       <div className="mt-6 space-y-6">
@@ -102,7 +89,7 @@ export default async function ParticipantePage({
                   <span className="font-display font-bold text-gold">{subtotal}</span>
                 </span>
               </div>
-              <div className="overflow-hidden rounded-xl border border-white/10 bg-surface">
+              <div className="overflow-hidden rounded-xl glass">
                 {ms.map((m) => {
                   const pred = predByMatch.get(m.id);
                   return (

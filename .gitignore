@@ -32,6 +32,7 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
+!.env.example
 
 # Excel de participantes (archivos fuente, no versionar)
 /pronosticos/*.xlsx

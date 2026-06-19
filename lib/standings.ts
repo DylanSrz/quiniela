@@ -1,4 +1,5 @@
 import type { Participant, Prediction, StandingRow } from "./types";
+import { SCORING } from "./constants";
 
 // Calcula la tabla de posiciones a partir de participantes y pronósticos ya puntuados.
 // points = null significa partido sin resultado todavía (no cuenta como jugado).
@@ -37,7 +38,10 @@ export function computeStandings(
   );
 }
 
-// Puntos de un pronóstico contra un resultado (misma lógica que el trigger SQL).
+// Puntos de un pronóstico contra un resultado.
+// IMPORTANTE: esta lógica DEBE coincidir con el trigger SQL en Postgres
+// (scripts/*.sql) — son dos fuentes de la misma regla. El test en
+// standings.test.ts codifica la tabla de puntos como guardia ante divergencias.
 // exacto=3, ganador acertado=1.5, empate acertado=1, nada=0.
 export function scoreOf(
   predHome: number,
@@ -45,9 +49,9 @@ export function scoreOf(
   home: number,
   away: number
 ): number {
-  if (predHome === home && predAway === away) return 3;
-  if (home === away && predHome === predAway) return 1;
+  if (predHome === home && predAway === away) return SCORING.exacto;
+  if (home === away && predHome === predAway) return SCORING.empate;
   if (home !== away && Math.sign(predHome - predAway) === Math.sign(home - away))
-    return 1.5;
+    return SCORING.ganador;
   return 0;
 }

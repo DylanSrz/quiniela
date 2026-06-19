@@ -2,7 +2,7 @@ import { getMatches, getParticipants, getPredictions } from "@/lib/data";
 import MatchesView from "@/components/MatchesView";
 import LiveRefresh from "@/components/LiveRefresh";
 
-export const revalidate = 30;
+export const dynamic = "force-dynamic";
 
 export default async function PartidosPage() {
   const [matches, participants, predictions] = await Promise.all([

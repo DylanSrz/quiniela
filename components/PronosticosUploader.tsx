@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import * as XLSX from "xlsx";
+import readXlsxFile from "read-excel-file";
 import { normalizeName, flagFor } from "@/lib/teams";
 import { upsertPredictions, type PredInput } from "@/app/admin/actions";
 import type { Match, Participant } from "@/lib/types";
@@ -69,13 +69,13 @@ export default function PronosticosUploader({ participants, matches }: Props) {
     if (!file) return;
     setFileName(file.name);
 
-    const buf = await file.arrayBuffer();
-    const wb = XLSX.read(buf, { type: "array" });
-    const sheet = wb.Sheets["Hoja1"] ?? wb.Sheets[wb.SheetNames[0]];
-    const grid = XLSX.utils.sheet_to_json<unknown[]>(sheet, {
-      header: 1,
-      defval: "",
-    });
+    // Lee la hoja "Hoja1" si existe; si no, la primera hoja del libro.
+    let grid: unknown[][];
+    try {
+      grid = (await readXlsxFile(file, { sheet: "Hoja1" })) as unknown[][];
+    } catch {
+      grid = (await readXlsxFile(file)) as unknown[][];
+    }
 
     const parsed: ParsedRow[] = [];
 
@@ -106,6 +106,12 @@ export default function PronosticosUploader({ participants, matches }: Props) {
       }
     }
 
+    if (parsed.length === 0) {
+      setResult(
+        "No se reconoció la plantilla: no se encontró ningún partido. " +
+          "Verifica que el Excel use el formato esperado (bloques por grupo)."
+      );
+    }
     setRows(parsed);
   }
 

@@ -8,25 +8,34 @@ ingresa resultados. El resto de la web es pública y de solo lectura.
 
 - Next.js 16 (App Router) + TypeScript + Tailwind CSS v4
 - Supabase (Postgres + RLS) — proyecto `quiniela-hunters`
-- SheetJS (`xlsx`) para parsear los Excel de los participantes
+- Motion (Framer Motion) para las animaciones de la UI
+- `read-excel-file` para parsear los Excel de los participantes
+- Vitest para los tests de las funciones puras
 
 ## Puesta en marcha
 
-1. Variables de entorno en `.env.local` (ver `.env.example`):
+1. Variables de entorno en `.env.local` (copiar de `.env.example`):
 
    ```
    NEXT_PUBLIC_SUPABASE_URL=...
    NEXT_PUBLIC_SUPABASE_ANON_KEY=...
    SUPABASE_SERVICE_ROLE_KEY=...   # secreto, Project Settings > API
    ADMIN_PASSWORD=...              # contraseña del panel /admin
-   ADMIN_SESSION_TOKEN=...         # token aleatorio de sesión
+   ADMIN_SESSION_TOKEN=...         # secreto para firmar la sesión (HMAC)
+   NEXT_PUBLIC_SITE_URL=...        # opcional, para Open Graph/metadata
    ```
+
+   La sesión del admin es una cookie firmada con HMAC-SHA256 y expiración (30 días),
+   así que `ADMIN_SESSION_TOKEN` debe ser un valor aleatorio y secreto.
 
 2. Instalar y correr:
 
    ```bash
    npm install
-   npm run dev      # http://localhost:3000
+   npm run dev        # http://localhost:3000
+   npm test           # tests (Vitest)
+   npm run typecheck  # tsc --noEmit
+   npm run lint       # eslint
    ```
 
 ## Reglas de puntuación

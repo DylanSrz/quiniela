@@ -1,15 +1,22 @@
 @import "tailwindcss";
 
 @theme {
-  --color-bg: #0a1410;
-  --color-surface: #122019;
-  --color-surface-2: #18271f;
-  --color-gold: #f5c542;
-  --color-grass: #34d399;
-  --color-muted: #8aa399;
-  --color-exacto: #22c55e;
-  --color-resultado: #eab308;
-  --color-fallo: #3a4a42;
+  /* Base oscura (noche de estadio) que deja resaltar los acentos vibrantes. */
+  --color-bg: #060912;
+  --color-surface: #0e1424;
+  --color-surface-2: #161d33;
+
+  /* Acentos vibrantes — Mundial 2026 (anfitriones MEX / USA / CAN) + dorado. */
+  --color-gold: #ffce3a;
+  --color-grass: #2ee27a;
+  --color-mx: #18c964;
+  --color-us: #3b82f6;
+  --color-ca: #ff4d4d;
+
+  --color-muted: #93a4c4;
+  --color-exacto: #22e07b;
+  --color-resultado: #ffb627;
+  --color-fallo: #3a4456;
 
   --font-display: var(--font-display), "Oswald", sans-serif;
   --font-sans: var(--font-geist-sans), system-ui, sans-serif;
@@ -21,9 +28,11 @@ html {
 
 body {
   background:
-    radial-gradient(1200px 600px at 50% -10%, rgba(52, 211, 153, 0.08), transparent 60%),
+    radial-gradient(900px 500px at 12% -8%, rgba(59, 130, 246, 0.16), transparent 60%),
+    radial-gradient(900px 520px at 88% -4%, rgba(24, 201, 100, 0.16), transparent 60%),
+    radial-gradient(800px 600px at 50% 110%, rgba(255, 77, 77, 0.1), transparent 60%),
     var(--color-bg);
-  color: #eaf2ee;
+  color: #eaf1ff;
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
 }
@@ -33,6 +42,78 @@ body {
   letter-spacing: 0.01em;
 }
 
+/* Degradado de marca (azul → verde → rojo → dorado) para títulos y bordes. */
+.brand-gradient {
+  background: linear-gradient(
+    100deg,
+    var(--color-us),
+    var(--color-grass) 38%,
+    var(--color-gold) 64%,
+    var(--color-ca)
+  );
+}
+
+.text-gradient {
+  background: linear-gradient(
+    100deg,
+    var(--color-us),
+    var(--color-grass) 40%,
+    var(--color-gold) 70%,
+    var(--color-ca)
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  background-size: 200% auto;
+  animation: gradient-pan 8s ease infinite;
+}
+
+/* Tarjeta con efecto vidrio. */
+.glass {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.06),
+    rgba(255, 255, 255, 0.02)
+  );
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glow-gold {
+  box-shadow: 0 0 0 1px rgba(255, 206, 58, 0.25), 0 8px 30px rgba(255, 206, 58, 0.12);
+}
+
+/* Punto "en vivo" pulsante. */
+.live-dot {
+  position: relative;
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--color-ca);
+}
+.live-dot::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 999px;
+  background: var(--color-ca);
+  animation: live-pulse 1.6s ease-out infinite;
+}
+
+/* Skeleton shimmer para estados de carga. */
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.04) 25%,
+    rgba(255, 255, 255, 0.1) 37%,
+    rgba(255, 255, 255, 0.04) 63%
+  );
+  background-size: 400% 100%;
+  animation: shimmer 1.4s ease infinite;
+  border-radius: 0.75rem;
+}
+
 /* Scrollbar discreto en tablas comparativas */
 .thin-scroll::-webkit-scrollbar {
   height: 8px;
@@ -40,4 +121,28 @@ body {
 .thin-scroll::-webkit-scrollbar-thumb {
   background: rgba(255, 255, 255, 0.12);
   border-radius: 999px;
+}
+
+@keyframes gradient-pan {
+  0% { background-position: 0% center; }
+  50% { background-position: 100% center; }
+  100% { background-position: 0% center; }
+}
+
+@keyframes live-pulse {
+  0% { transform: scale(1); opacity: 0.7; }
+  100% { transform: scale(3); opacity: 0; }
+}
+
+@keyframes shimmer {
+  0% { background-position: 100% 0; }
+  100% { background-position: -100% 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .text-gradient,
+  .live-dot::after,
+  .skeleton {
+    animation: none;
+  }
 }
