@@ -4,9 +4,11 @@ import { revalidatePath } from "next/cache";
 import { supabaseAdmin } from "@/lib/supabase";
 import { isAdmin } from "@/lib/auth";
 import { scoreOf } from "@/lib/standings";
+import type { ActionResult } from "@/lib/types";
 
-async function assertAdmin() {
-  if (!(await isAdmin())) throw new Error("No autorizado");
+async function ensureAdmin(): Promise<ActionResult | null> {
+  if (!(await isAdmin())) return { ok: false, error: "No autorizado" };
+  return null;
 }
 
 function revalidateAll() {
@@ -20,56 +22,82 @@ function revalidateAll() {
 
 // ---- Participantes ----
 
-export async function createParticipant(formData: FormData) {
-  await assertAdmin();
+export async function createParticipant(
+  _prev: ActionResult | null,
+  formData: FormData
+): Promise<ActionResult> {
+  const denied = await ensureAdmin();
+  if (denied) return denied;
+
   const name = String(formData.get("display_name") ?? "").trim();
   const emoji = String(formData.get("avatar_emoji") ?? "").trim() || "⚽";
-  if (!name) throw new Error("El nombre es obligatorio");
+  if (!name) return { ok: false, error: "El nombre es obligatorio" };
 
   const sb = supabaseAdmin();
   const { error } = await sb
     .from("participants")
     .insert({ display_name: name, avatar_emoji: emoji });
-  if (error) throw new Error(error.message);
+  if (error) return { ok: false, error: error.message };
+
   revalidateAll();
+  return { ok: true, message: `Participante "${name}" agregado` };
 }
 
-export async function updateParticipant(formData: FormData) {
-  await assertAdmin();
+export async function updateParticipant(
+  _prev: ActionResult | null,
+  formData: FormData
+): Promise<ActionResult> {
+  const denied = await ensureAdmin();
+  if (denied) return denied;
+
   const id = Number(formData.get("id"));
   const name = String(formData.get("display_name") ?? "").trim();
   const emoji = String(formData.get("avatar_emoji") ?? "").trim() || "⚽";
-  if (!id || !name) throw new Error("Datos inválidos");
+  if (!id || !name) return { ok: false, error: "Datos inválidos" };
 
   const sb = supabaseAdmin();
   const { error } = await sb
     .from("participants")
     .update({ display_name: name, avatar_emoji: emoji })
     .eq("id", id);
-  if (error) throw new Error(error.message);
+  if (error) return { ok: false, error: error.message };
+
   revalidateAll();
+  return { ok: true, message: "Cambios guardados" };
 }
 
-export async function deleteParticipant(formData: FormData) {
-  await assertAdmin();
+export async function deleteParticipant(
+  _prev: ActionResult | null,
+  formData: FormData
+): Promise<ActionResult> {
+  const denied = await ensureAdmin();
+  if (denied) return denied;
+
   const id = Number(formData.get("id"));
-  if (!id) throw new Error("Id inválido");
+  if (!id) return { ok: false, error: "Id inválido" };
 
   const sb = supabaseAdmin();
   const { error } = await sb.from("participants").delete().eq("id", id);
-  if (error) throw new Error(error.message);
+  if (error) return { ok: false, error: error.message };
+
   revalidateAll();
+  return { ok: true, message: "Participante eliminado" };
 }
 
 // ---- Resultados ----
 
-export async function saveResult(formData: FormData) {
-  await assertAdmin();
+export async function saveResult(
+  _prev: ActionResult | null,
+  formData: FormData
+): Promise<ActionResult> {
+  const denied = await ensureAdmin();
+  if (denied) return denied;
+
   const matchId = Number(formData.get("match_id"));
   const homeRaw = formData.get("home_goals");
   const awayRaw = formData.get("away_goals");
 
-  if (!matchId) throw new Error("Partido inválido");
+  if (!matchId) return { ok: false, error: "Partido inválido" };
   const home = Number(homeRaw);
   const away = Number(awayRaw);
   if (
@@ -82,7 +110,7 @@ export async function saveResult(formData: FormData) {
     home < 0 ||
     away < 0
   ) {
-    throw new Error("Marcador inválido");
+    return { ok: false, error: "Marcador inválido" };
   }
 
   const sb = supabaseAdmin();
@@ -90,23 +118,32 @@ export async function saveResult(formData: FormData) {
     .from("matches")
     .update({ home_goals: home, away_goals: away, finished: true })
     .eq("id", matchId);
-  if (error) throw new Error(error.message);
+  if (error) return { ok: false, error: error.message };
+
   revalidateAll();
+  return { ok: true, message: `Resultado guardado (${home}-${away})` };
 }
 
 // Revierte un resultado (vuelve a "por jugar"); el trigger pone points = null.
-export async function clearResult(formData: FormData) {
-  await assertAdmin();
+export async function clearResult(
+  _prev: ActionResult | null,
+  formData: FormData
+): Promise<ActionResult> {
+  const denied = await ensureAdmin();
+  if (denied) return denied;
+
   const matchId = Number(formData.get("match_id"));
-  if (!matchId) throw new Error("Partido inválido");
+  if (!matchId) return { ok: false, error: "Partido inválido" };
 
   const sb = supabaseAdmin();
   const { error } = await sb
     .from("matches")
     .update({ home_goals: null, away_goals: null, finished: false })
     .eq("id", matchId);
-  if (error) throw new Error(error.message);
+  if (error) return { ok: false, error: error.message };
+
   revalidateAll();
+  return { ok: true, message: "Resultado revertido" };
 }
 
 // ---- Pronósticos (carga desde Excel) ----
@@ -121,7 +158,7 @@ export async function upsertPredictions(
   participantId: number,
   rows: PredInput[]
 ): Promise<{ ok: boolean; count: number; error?: string }> {
-  await assertAdmin();
+  if (!(await isAdmin())) return { ok: false, count: 0, error: "No autorizado" };
   if (!participantId) return { ok: false, count: 0, error: "Participante inválido" };
   if (!rows.length) return { ok: false, count: 0, error: "Sin pronósticos" };
 
@@ -139,9 +176,7 @@ export async function upsertPredictions(
     .from("matches")
     .select("id, home_goals, away_goals")
     .eq("finished", true);
-  const results = new Map(
-    (finishedMatches ?? []).map((m) => [m.id, m])
-  );
+  const results = new Map((finishedMatches ?? []).map((m) => [m.id, m]));
 
   const withPoints = payload.map((p) => {
     const res = results.get(p.match_id);

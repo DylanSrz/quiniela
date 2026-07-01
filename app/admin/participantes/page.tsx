@@ -4,6 +4,8 @@ import {
   updateParticipant,
   deleteParticipant,
 } from "../actions";
+import ActionForm from "@/components/ActionForm";
+import SubmitButton from "@/components/SubmitButton";
 import type { Participant } from "@/lib/types";
 
 export const dynamic = "force-dynamic";
@@ -23,7 +25,11 @@ export default async function ParticipantesPage() {
         <h2 className="mb-3 text-xs uppercase tracking-wide text-muted">
           Nuevo participante
         </h2>
-        <form action={createParticipant} className="flex flex-wrap items-end gap-2">
+        <ActionForm
+          action={createParticipant}
+          resetOnSuccess
+          className="flex flex-wrap items-end gap-2"
+        >
           <div className="w-16">
             <label className="block text-xs text-muted">Avatar</label>
             <input
@@ -42,10 +48,10 @@ export default async function ParticipantesPage() {
               className="mt-1 w-full rounded-lg border border-white/10 bg-black/30 px-3 py-2 outline-none focus:border-gold"
             />
           </div>
-          <button className="rounded-lg bg-gold px-4 py-2 font-semibold text-black transition hover:brightness-110">
+          <SubmitButton className="rounded-lg bg-gold px-4 py-2 font-semibold text-black hover:brightness-110">
             Agregar
-          </button>
-        </form>
+          </SubmitButton>
+        </ActionForm>
       </section>
 
       <section className="space-y-2">
@@ -57,7 +63,7 @@ export default async function ParticipantesPage() {
               key={p.id}
               className="flex flex-wrap items-end gap-2 rounded-xl border border-white/10 bg-surface p-3"
             >
-              <form
+              <ActionForm
                 action={updateParticipant}
                 className="flex flex-1 flex-wrap items-end gap-2"
               >
@@ -76,16 +82,19 @@ export default async function ParticipantesPage() {
                   required
                   className="min-w-40 flex-1 rounded-lg border border-white/10 bg-black/30 px-3 py-2 outline-none focus:border-gold"
                 />
-                <button className="rounded-lg border border-white/15 px-3 py-2 text-sm transition hover:bg-white/5">
+                <SubmitButton className="rounded-lg border border-white/15 px-3 py-2 text-sm hover:bg-white/5">
                   Guardar
-                </button>
-              </form>
-              <form action={deleteParticipant}>
+                </SubmitButton>
+              </ActionForm>
+              <ActionForm action={deleteParticipant}>
                 <input type="hidden" name="id" value={p.id} />
-                <button className="rounded-lg border border-red-500/30 px-3 py-2 text-sm text-red-400 transition hover:bg-red-500/10">
+                <SubmitButton
+                  pendingText="…"
+                  className="rounded-lg border border-red-500/30 px-3 py-2 text-sm text-red-400 hover:bg-red-500/10"
+                >
                   Eliminar
-                </button>
-              </form>
+                </SubmitButton>
+              </ActionForm>
             </div>
           ))
         )}
