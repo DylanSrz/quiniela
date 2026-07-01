@@ -33,3 +33,6 @@ export type StandingRow = {
   resultados: number;
   jugados: number;
 };
+
+// Resultado estándar de una server action (para feedback en la UI con useActionState).
+export type ActionResult = { ok: boolean; error?: string; message?: string };

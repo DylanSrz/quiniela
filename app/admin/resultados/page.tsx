@@ -3,6 +3,8 @@ import { supabasePublic } from "@/lib/supabase";
 import { flagFor } from "@/lib/teams";
 import { fmtDateTime } from "@/lib/format";
 import { saveResult, clearResult } from "../actions";
+import ActionForm from "@/components/ActionForm";
+import SubmitButton from "@/components/SubmitButton";
 import type { Match } from "@/lib/types";
 
 export const dynamic = "force-dynamic";
@@ -66,7 +68,7 @@ export default async function ResultadosPage({
                 {m.home_team} {flagFor(m.home_team)}
               </span>
 
-              <form action={saveResult} className="flex items-center gap-1">
+              <ActionForm action={saveResult} className="flex items-center gap-1">
                 <input type="hidden" name="match_id" value={m.id} />
                 <input
                   name="home_goals"
@@ -83,10 +85,10 @@ export default async function ResultadosPage({
                   defaultValue={m.away_goals ?? ""}
                   className="w-12 rounded-lg border border-white/10 bg-black/30 px-2 py-1.5 text-center outline-none focus:border-gold"
                 />
-                <button className="ml-1 rounded-lg bg-gold px-3 py-1.5 text-sm font-semibold text-black transition hover:brightness-110">
+                <SubmitButton className="ml-1 rounded-lg bg-gold px-3 py-1.5 text-sm font-semibold text-black hover:brightness-110">
                   {m.finished ? "Actualizar" : "Guardar"}
-                </button>
-              </form>
+                </SubmitButton>
+              </ActionForm>
 
               <span className="flex-1 text-left text-sm font-medium">
                 {flagFor(m.away_team)} {m.away_team}
@@ -95,12 +97,15 @@ export default async function ResultadosPage({
             {m.finished && (
               <div className="mt-2 flex items-center justify-end gap-2">
                 <span className="text-xs text-exacto">✓ finalizado</span>
-                <form action={clearResult}>
+                <ActionForm action={clearResult}>
                   <input type="hidden" name="match_id" value={m.id} />
-                  <button className="rounded-md border border-white/15 px-2 py-1 text-xs text-muted transition hover:bg-white/5">
+                  <SubmitButton
+                    pendingText="…"
+                    className="rounded-md border border-white/15 px-2 py-1 text-xs text-muted hover:bg-white/5"
+                  >
                     Revertir
-                  </button>
-                </form>
+                  </SubmitButton>
+                </ActionForm>
               </div>
             )}
           </div>
