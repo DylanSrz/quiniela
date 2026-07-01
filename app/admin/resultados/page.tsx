@@ -5,7 +5,7 @@ import { fmtDateTime } from "@/lib/format";
 import { saveResult, clearResult } from "../actions";
 import ActionForm from "@/components/ActionForm";
 import SubmitButton from "@/components/SubmitButton";
-import { JORNADAS } from "@/lib/constants";
+import { JORNADAS, MAX_GOALS } from "@/lib/constants";
 import type { Match } from "@/lib/types";
 
 export const dynamic = "force-dynamic";
@@ -73,6 +73,7 @@ export default async function ResultadosPage({
                   name="home_goals"
                   type="number"
                   min={0}
+                  max={MAX_GOALS}
                   defaultValue={m.home_goals ?? ""}
                   className="w-12 rounded-lg border border-white/10 bg-black/30 px-2 py-1.5 text-center outline-none focus:border-gold"
                 />
@@ -81,6 +82,7 @@ export default async function ResultadosPage({
                   name="away_goals"
                   type="number"
                   min={0}
+                  max={MAX_GOALS}
                   defaultValue={m.away_goals ?? ""}
                   className="w-12 rounded-lg border border-white/10 bg-black/30 px-2 py-1.5 text-center outline-none focus:border-gold"
                 />

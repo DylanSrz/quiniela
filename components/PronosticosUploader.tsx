@@ -107,6 +107,12 @@ export default function PronosticosUploader({ participants, matches }: Props) {
       }
     }
 
+    if (parsed.length === 0) {
+      setResult(
+        "No se reconoció la plantilla: no se encontró ningún partido. " +
+          "Verifica que el Excel use el formato esperado (bloques por grupo)."
+      );
+    }
     setRows(parsed);
   }
 

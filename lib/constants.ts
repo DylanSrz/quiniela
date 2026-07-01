@@ -11,3 +11,6 @@ export type Jornada = (typeof JORNADAS)[number];
 
 // Zona horaria de referencia para mostrar horarios (Colombia).
 export const TIMEZONE = "America/Bogota";
+
+// Tope defensivo de goles aceptados al ingresar un resultado.
+export const MAX_GOALS = 99;
