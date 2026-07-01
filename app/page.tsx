@@ -1,13 +1,21 @@
 import Link from "next/link";
-import { getMatches, getStandings } from "@/lib/data";
+import { getMatches, getParticipants, getPredictions } from "@/lib/data";
+import { computeStandings, computePositionDeltas } from "@/lib/standings";
 import LiveRefresh from "@/components/LiveRefresh";
 import ShareButton from "@/components/ShareButton";
 import { MEDALS, SCORING } from "@/lib/constants";
+import type { StandingRow } from "@/lib/types";
 
 export const revalidate = 30;
 
 export default async function HomePage() {
-  const [standings, matches] = await Promise.all([getStandings(), getMatches()]);
+  const [participants, predictions, matches] = await Promise.all([
+    getParticipants(),
+    getPredictions(),
+    getMatches(),
+  ]);
+  const standings = computeStandings(participants, predictions);
+  const deltas = computePositionDeltas(participants, predictions, matches);
   const jugados = matches.filter((m) => m.finished).length;
   const total = matches.length;
   const leader = standings[0];
@@ -60,7 +68,10 @@ export default async function HomePage() {
                     }`}
                   >
                     <td className="px-3 py-3 text-muted">
-                      {i < 3 && hayPuntos ? MEDALS[i] : i + 1}
+                      <span className="inline-flex items-center gap-1">
+                        <span>{i < 3 && hayPuntos ? MEDALS[i] : i + 1}</span>
+                        <Trend delta={deltas.get(row.participant.id)} />
+                      </span>
                     </td>
                     <td className="px-2 py-3">
                       <Link
@@ -86,7 +97,11 @@ export default async function HomePage() {
           <p className="mt-3 text-xs text-muted">
             Marcador exacto = {SCORING.exacto} pts · ganador acertado ={" "}
             {SCORING.ganador} · empate acertado = {SCORING.empate} pt. Desempate:
-            más 🎯, luego más ✓.
+            más 🎯, luego más ✓.{" "}
+            <span className="whitespace-nowrap">
+              <span className="text-exacto">▲</span>
+              <span className="text-red-400">▼</span> = cambio vs jornada anterior.
+            </span>
           </p>
         </>
       )}
@@ -94,11 +109,7 @@ export default async function HomePage() {
   );
 }
 
-function Podium({
-  standings,
-}: {
-  standings: Awaited<ReturnType<typeof getStandings>>;
-}) {
+function Podium({ standings }: { standings: StandingRow[] }) {
   return (
     <div className="mb-5 grid grid-cols-3 gap-2">
       {standings.map((row, i) => (
@@ -120,6 +131,19 @@ function Podium({
         </Link>
       ))}
     </div>
+  );
+}
+
+function Trend({ delta }: { delta?: number }) {
+  if (!delta) return null; // undefined o 0 → sin flecha
+  return delta > 0 ? (
+    <span className="text-[10px] text-exacto" title="Subió">
+      ▲
+    </span>
+  ) : (
+    <span className="text-[10px] text-red-400" title="Bajó">
+      ▼
+    </span>
   );
 }
 

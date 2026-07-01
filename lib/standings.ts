@@ -1,4 +1,4 @@
-import type { Participant, Prediction, StandingRow } from "./types";
+import type { Match, Participant, Prediction, StandingRow } from "./types";
 
 // Calcula la tabla de posiciones a partir de participantes y pronósticos ya puntuados.
 // points = null significa partido sin resultado todavía (no cuenta como jugado).
@@ -50,4 +50,43 @@ export function scoreOf(
   if (home !== away && Math.sign(predHome - predAway) === Math.sign(home - away))
     return 1.5;
   return 0;
+}
+
+// Cambio de posición de cada participante respecto al cierre de la jornada
+// ANTERIOR a la última jornada con resultados. Devuelve id -> delta, donde
+// delta = posiciónPrevia - posiciónActual (>0 subió, <0 bajó, 0 igual).
+// Map vacío cuando no hay una jornada previa con puntos (p. ej. solo J1 jugada).
+export function computePositionDeltas(
+  participants: Participant[],
+  predictions: Prediction[],
+  matches: Match[]
+): Map<number, number> {
+  const jornadaByMatch = new Map(matches.map((m) => [m.id, m.jornada]));
+
+  const finishedJornadas = matches
+    .filter((m) => m.finished)
+    .map((m) => m.jornada);
+  if (finishedJornadas.length === 0) return new Map();
+  const latest = [...finishedJornadas].sort().at(-1)!;
+
+  const before = computeStandings(
+    participants,
+    predictions.filter((p) => {
+      const j = jornadaByMatch.get(p.match_id);
+      return j !== undefined && j < latest;
+    })
+  );
+
+  // Sin jornada previa con puntos → sin referencia (no mostrar flechas).
+  if (before.every((r) => r.jugados === 0)) return new Map();
+
+  const prevIndex = new Map(before.map((r, i) => [r.participant.id, i]));
+  const now = computeStandings(participants, predictions);
+
+  const deltas = new Map<number, number>();
+  now.forEach((r, i) => {
+    const prev = prevIndex.get(r.participant.id);
+    if (prev !== undefined) deltas.set(r.participant.id, prev - i);
+  });
+  return deltas;
 }
