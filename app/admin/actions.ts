@@ -4,6 +4,7 @@ import { revalidatePath } from "next/cache";
 import { supabaseAdmin } from "@/lib/supabase";
 import { isAdmin } from "@/lib/auth";
 import { scoreOf } from "@/lib/standings";
+import { MAX_GOALS } from "@/lib/constants";
 import type { ActionResult } from "@/lib/types";
 
 async function ensureAdmin(): Promise<ActionResult | null> {
@@ -108,7 +109,9 @@ export async function saveResult(
     !Number.isInteger(home) ||
     !Number.isInteger(away) ||
     home < 0 ||
-    away < 0
+    away < 0 ||
+    home > MAX_GOALS ||
+    away > MAX_GOALS
   ) {
     return { ok: false, error: "Marcador inválido" };
   }
