@@ -1,6 +1,5 @@
 import { supabasePublic } from "@/lib/supabase";
 import PronosticosUploader from "@/components/PronosticosUploader";
-import type { Match, Participant } from "@/lib/types";
 
 export const dynamic = "force-dynamic";
 
@@ -23,8 +22,8 @@ export default async function PronosticosPage() {
         </p>
       </div>
       <PronosticosUploader
-        participants={(parts ?? []) as Participant[]}
-        matches={(ms ?? []) as Match[]}
+        participants={parts ?? []}
+        matches={ms ?? []}
       />
     </div>
   );

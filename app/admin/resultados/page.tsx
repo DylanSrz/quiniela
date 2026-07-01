@@ -6,7 +6,6 @@ import { saveResult, clearResult } from "../actions";
 import ActionForm from "@/components/ActionForm";
 import SubmitButton from "@/components/SubmitButton";
 import { JORNADAS, MAX_GOALS } from "@/lib/constants";
-import type { Match } from "@/lib/types";
 
 export const dynamic = "force-dynamic";
 
@@ -26,7 +25,7 @@ export default async function ResultadosPage({
     .select("*")
     .eq("jornada", jornada)
     .order("kickoff_utc");
-  const matches = (data ?? []) as Match[];
+  const matches = data ?? [];
 
   return (
     <div className="space-y-5">

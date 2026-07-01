@@ -6,14 +6,13 @@ import {
 } from "../actions";
 import ActionForm from "@/components/ActionForm";
 import SubmitButton from "@/components/SubmitButton";
-import type { Participant } from "@/lib/types";
 
 export const dynamic = "force-dynamic";
 
 export default async function ParticipantesPage() {
   const sb = supabasePublic();
   const { data } = await sb.from("participants").select("*").order("display_name");
-  const participants = (data ?? []) as Participant[];
+  const participants = data ?? [];
 
   return (
     <div className="space-y-6">
