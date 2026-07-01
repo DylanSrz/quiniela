@@ -1,11 +1,10 @@
 import { NextResponse } from "next/server";
 import { getMatches, getStandings } from "@/lib/data";
+import { SCORING } from "@/lib/constants";
 
 // Endpoint público para bots/integraciones (ej. comando /quiniela de Discord).
 // Devuelve la tabla de posiciones en JSON + un texto ya formateado.
 export const dynamic = "force-dynamic";
-
-const MEDALS = ["🥇", "🥈", "🥉"];
 
 // 9 -> "9", 7.5 -> "7.5"
 function fmtPts(p: number): string {
@@ -59,7 +58,7 @@ export async function GET() {
         updated_at: new Date().toISOString(),
         jugados,
         total_partidos: total,
-        scoring: { exacto: 3, ganador: 1.5, empate: 1 },
+        scoring: SCORING,
         standings: rows,
         text,
       },

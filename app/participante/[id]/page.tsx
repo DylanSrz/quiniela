@@ -3,13 +3,11 @@ import { notFound } from "next/navigation";
 import { supabasePublic } from "@/lib/supabase";
 import { getMatches } from "@/lib/data";
 import { flagFor } from "@/lib/teams";
-import { fmtDateTime } from "@/lib/format";
+import { JORNADAS } from "@/lib/constants";
 import LiveRefresh from "@/components/LiveRefresh";
 import type { Participant, Prediction } from "@/lib/types";
 
 export const revalidate = 30;
-
-const JORNADAS = ["J1", "J2", "J3"] as const;
 
 export default async function ParticipantePage({
   params,

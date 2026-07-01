@@ -5,11 +5,10 @@ import { fmtDateTime } from "@/lib/format";
 import { saveResult, clearResult } from "../actions";
 import ActionForm from "@/components/ActionForm";
 import SubmitButton from "@/components/SubmitButton";
+import { JORNADAS } from "@/lib/constants";
 import type { Match } from "@/lib/types";
 
 export const dynamic = "force-dynamic";
-
-const JORNADAS = ["J1", "J2", "J3"] as const;
 
 export default async function ResultadosPage({
   searchParams,
