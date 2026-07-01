@@ -2,23 +2,25 @@
 
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
-import { ADMIN_COOKIE, expectedToken } from "@/lib/auth";
+import { ADMIN_COOKIE } from "@/lib/auth";
+import { createSession, timingSafeEqualStr, SESSION_TTL_MS } from "@/lib/session";
 
 export async function login(formData: FormData) {
   const password = String(formData.get("password") ?? "");
   const from = String(formData.get("from") ?? "/admin");
 
-  if (password !== process.env.ADMIN_PASSWORD) {
+  const expected = process.env.ADMIN_PASSWORD ?? "";
+  if (!expected || !timingSafeEqualStr(password, expected)) {
     redirect("/login?error=1");
   }
 
   const store = await cookies();
-  store.set(ADMIN_COOKIE, expectedToken(), {
+  store.set(ADMIN_COOKIE, await createSession(), {
     httpOnly: true,
     sameSite: "lax",
     secure: process.env.NODE_ENV === "production",
     path: "/",
-    maxAge: 60 * 60 * 24 * 30,
+    maxAge: SESSION_TTL_MS / 1000,
   });
 
   redirect(from.startsWith("/admin") ? from : "/admin");
