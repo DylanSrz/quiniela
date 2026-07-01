@@ -5,7 +5,7 @@ import { getMatches } from "@/lib/data";
 import { flagFor } from "@/lib/teams";
 import { JORNADAS } from "@/lib/constants";
 import LiveRefresh from "@/components/LiveRefresh";
-import type { Participant, Prediction } from "@/lib/types";
+import type { Prediction } from "@/lib/types";
 
 export const revalidate = 30;
 
@@ -26,9 +26,9 @@ export default async function ParticipantePage({
   ]);
 
   if (!part) notFound();
-  const participant = part as Participant;
+  const participant = part;
   const predByMatch = new Map<number, Prediction>(
-    (preds ?? []).map((p) => [p.match_id, p as Prediction])
+    (preds ?? []).map((p) => [p.match_id, p])
   );
 
   const total = (preds ?? []).reduce((s, p) => s + Number(p.points ?? 0), 0);
