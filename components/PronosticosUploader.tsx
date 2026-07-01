@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import * as XLSX from "xlsx";
+import readXlsxFile from "read-excel-file";
 import { normalizeName, flagFor } from "@/lib/teams";
 import { upsertPredictions, type PredInput } from "@/app/admin/actions";
 import type { Match, Participant } from "@/lib/types";
@@ -69,13 +69,14 @@ export default function PronosticosUploader({ participants, matches }: Props) {
     if (!file) return;
     setFileName(file.name);
 
-    const buf = await file.arrayBuffer();
-    const wb = XLSX.read(buf, { type: "array" });
-    const sheet = wb.Sheets["Hoja1"] ?? wb.Sheets[wb.SheetNames[0]];
-    const grid = XLSX.utils.sheet_to_json<unknown[]>(sheet, {
-      header: 1,
-      defval: "",
-    });
+    // Lee la hoja "Hoja1" si existe; si no, la primera hoja del libro.
+    // read-excel-file devuelve las filas como arrays (celdas vacías = null).
+    let grid: unknown[][];
+    try {
+      grid = (await readXlsxFile(file, { sheet: "Hoja1" })) as unknown[][];
+    } catch {
+      grid = (await readXlsxFile(file)) as unknown[][];
+    }
 
     const parsed: ParsedRow[] = [];
 
@@ -163,7 +164,7 @@ export default function PronosticosUploader({ participants, matches }: Props) {
         </label>
         <input
           type="file"
-          accept=".xlsx,.xls"
+          accept=".xlsx"
           onChange={onFile}
           disabled={participantId === ""}
           className="mt-1 w-full text-sm text-muted file:mr-3 file:rounded-lg file:border-0 file:bg-gold file:px-3 file:py-2 file:font-semibold file:text-black disabled:opacity-50"
