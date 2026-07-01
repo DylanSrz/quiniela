@@ -1,13 +1,14 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
+import { verifySession } from "@/lib/session";
 
 const ADMIN_COOKIE = "qh_admin";
 
-export function proxy(req: NextRequest) {
+export async function proxy(req: NextRequest) {
   const { pathname } = req.nextUrl;
 
   const token = req.cookies.get(ADMIN_COOKIE)?.value;
-  if (token && token === process.env.ADMIN_SESSION_TOKEN) {
+  if (await verifySession(token)) {
     return NextResponse.next();
   }
 
