@@ -2,19 +2,19 @@ import Link from "next/link";
 import { getMatches, getStandings } from "@/lib/data";
 import LiveRefresh from "@/components/LiveRefresh";
 import ShareButton from "@/components/ShareButton";
+import { MEDALS, SCORING } from "@/lib/constants";
 
 export const revalidate = 30;
-
-const MEDALS = ["🥇", "🥈", "🥉"];
 
 export default async function HomePage() {
   const [standings, matches] = await Promise.all([getStandings(), getMatches()]);
   const jugados = matches.filter((m) => m.finished).length;
+  const total = matches.length;
   const leader = standings[0];
   const hayPuntos = standings.some((s) => s.jugados > 0);
 
   const shareText = leader
-    ? `🎯 Quiniela Hunters — va liderando ${leader.participant.avatar_emoji} ${leader.participant.display_name} con ${leader.points} pts (${jugados}/72 partidos)`
+    ? `🎯 Quiniela Hunters — va liderando ${leader.participant.avatar_emoji} ${leader.participant.display_name} con ${leader.points} pts (${jugados}/${total} partidos)`
     : "🎯 Quiniela Hunters — Mundial 2026";
 
   return (
@@ -27,7 +27,7 @@ export default async function HomePage() {
         </h1>
         <div className="mt-1 flex items-center justify-between gap-3">
           <p className="text-sm text-muted">
-            {jugados} de 72 partidos jugados · fase de grupos
+            {jugados} de {total} partidos jugados · fase de grupos
           </p>
           <ShareButton text={shareText} />
         </div>
@@ -84,8 +84,9 @@ export default async function HomePage() {
           </div>
 
           <p className="mt-3 text-xs text-muted">
-            Marcador exacto = 3 pts · ganador acertado = 1.5 · empate acertado = 1
-            pt. Desempate: más 🎯, luego más ✓.
+            Marcador exacto = {SCORING.exacto} pts · ganador acertado ={" "}
+            {SCORING.ganador} · empate acertado = {SCORING.empate} pt. Desempate:
+            más 🎯, luego más ✓.
           </p>
         </>
       )}

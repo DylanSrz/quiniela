@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import { flagFor } from "@/lib/teams";
 import { fmtDateTime } from "@/lib/format";
+import { JORNADAS, type Jornada } from "@/lib/constants";
 import type { Match, Participant, Prediction } from "@/lib/types";
 
 type Props = {
@@ -11,10 +12,8 @@ type Props = {
   predictions: Prediction[];
 };
 
-const JORNADAS = ["J1", "J2", "J3"] as const;
-
 export default function MatchesView({ matches, participants, predictions }: Props) {
-  const [jornada, setJornada] = useState<(typeof JORNADAS)[number]>("J1");
+  const [jornada, setJornada] = useState<Jornada>("J1");
 
   // Index pronósticos por partido.
   const predsByMatch = useMemo(() => {

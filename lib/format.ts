@@ -1,12 +1,14 @@
+import { TIMEZONE } from "./constants";
+
 const DATE_FMT = new Intl.DateTimeFormat("es-CO", {
-  timeZone: "America/Bogota",
+  timeZone: TIMEZONE,
   weekday: "short",
   day: "2-digit",
   month: "short",
 });
 
 const TIME_FMT = new Intl.DateTimeFormat("es-CO", {
-  timeZone: "America/Bogota",
+  timeZone: TIMEZONE,
   hour: "2-digit",
   minute: "2-digit",
   hour12: true,
