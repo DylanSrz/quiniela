@@ -7,11 +7,16 @@ import { createSession, timingSafeEqualStr, SESSION_TTL_MS } from "@/lib/session
 
 export async function login(formData: FormData) {
   const password = String(formData.get("password") ?? "");
-  const from = String(formData.get("from") ?? "/admin");
+  const rawFrom = String(formData.get("from") ?? "/admin");
+  // Solo se aceptan destinos dentro del panel (evita open redirects).
+  const from = rawFrom.startsWith("/admin") ? rawFrom : "/admin";
 
   const expected = process.env.ADMIN_PASSWORD ?? "";
   if (!expected || !timingSafeEqualStr(password, expected)) {
-    redirect("/login?error=1");
+    // Freno barato a fuerza bruta: cada intento fallido cuesta ~1s.
+    await new Promise((r) => setTimeout(r, 1000));
+    // Preservar el destino para que el reintento correcto aterrice donde iba.
+    redirect(`/login?error=1&from=${encodeURIComponent(from)}`);
   }
 
   const store = await cookies();
@@ -23,7 +28,7 @@ export async function login(formData: FormData) {
     maxAge: SESSION_TTL_MS / 1000,
   });
 
-  redirect(from.startsWith("/admin") ? from : "/admin");
+  redirect(from);
 }
 
 export async function logout() {
