@@ -74,6 +74,12 @@ export default function RootLayout({
                 Partidos
               </Link>
               <Link
+                href="/comparar"
+                className="rounded-md px-3 py-1.5 text-muted transition hover:bg-white/5 hover:text-white"
+              >
+                Comparar
+              </Link>
+              <Link
                 href="/admin"
                 title="Panel de administrador"
                 aria-label="Panel de administrador"
