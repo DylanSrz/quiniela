@@ -6,6 +6,7 @@ import { saveResult, clearResult } from "../actions";
 import ActionForm from "@/components/ActionForm";
 import SubmitButton from "@/components/SubmitButton";
 import { JORNADAS, MAX_GOALS } from "@/lib/constants";
+import { currentJornada } from "@/lib/standings";
 
 export const dynamic = "force-dynamic";
 
@@ -15,17 +16,16 @@ export default async function ResultadosPage({
   searchParams: Promise<{ j?: string }>;
 }) {
   const { j } = await searchParams;
-  const jornada = (JORNADAS as readonly string[]).includes(j ?? "")
-    ? (j as string)
-    : "J1";
 
   const sb = supabasePublic();
-  const { data } = await sb
-    .from("matches")
-    .select("*")
-    .eq("jornada", jornada)
-    .order("kickoff_utc");
-  const matches = data ?? [];
+  const { data } = await sb.from("matches").select("*").order("kickoff_utc");
+  const allMatches = data ?? [];
+
+  // Sin ?j= en la URL se abre la jornada activa (la que se está jugando).
+  const jornada = (JORNADAS as readonly string[]).includes(j ?? "")
+    ? (j as string)
+    : currentJornada(allMatches);
+  const matches = allMatches.filter((m) => m.jornada === jornada);
 
   return (
     <div className="space-y-5">

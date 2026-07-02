@@ -1,6 +1,26 @@
 import { describe, it, expect } from "vitest";
-import { scoreOf, computeStandings, computePositionDeltas } from "./standings";
+import {
+  scoreOf,
+  computeStandings,
+  computePositionDeltas,
+  currentJornada,
+} from "./standings";
 import type { Match, Participant, Prediction } from "./types";
+
+function makeMatch(id: number, jornada: string, finished: boolean): Match {
+  return {
+    id,
+    code: `M${id}`,
+    group_letter: "A",
+    jornada,
+    kickoff_utc: "2026-06-01T00:00:00Z",
+    home_team: "X",
+    away_team: "Y",
+    home_goals: finished ? 1 : null,
+    away_goals: finished ? 0 : null,
+    finished,
+  };
+}
 
 describe("scoreOf", () => {
   it("da 3 por marcador exacto (victoria)", () => {
@@ -76,23 +96,8 @@ describe("computePositionDeltas", () => {
     { id: 2, display_name: "Beto", avatar_emoji: "🐻" },
   ];
 
-  function match(id: number, jornada: string, finished: boolean): Match {
-    return {
-      id,
-      code: `M${id}`,
-      group_letter: "A",
-      jornada,
-      kickoff_utc: "2026-06-01T00:00:00Z",
-      home_team: "X",
-      away_team: "Y",
-      home_goals: finished ? 1 : null,
-      away_goals: finished ? 0 : null,
-      finished,
-    };
-  }
-
   it("marca quién subió/bajó respecto al cierre de la jornada anterior", () => {
-    const matches = [match(1, "J1", true), match(2, "J2", true)];
+    const matches = [makeMatch(1, "J1", true), makeMatch(2, "J2", true)];
     const predictions: Prediction[] = [
       // J1: Ana exacto (3), Beto ganador (1.5) → tras J1 lidera Ana.
       { participant_id: 1, match_id: 1, pred_home: 1, pred_away: 0, points: 3 },
@@ -107,12 +112,40 @@ describe("computePositionDeltas", () => {
   });
 
   it("no da referencia cuando solo hay resultados de J1", () => {
-    const matches = [match(1, "J1", true), match(2, "J2", false)];
+    const matches = [makeMatch(1, "J1", true), makeMatch(2, "J2", false)];
     const predictions: Prediction[] = [
       { participant_id: 1, match_id: 1, pred_home: 1, pred_away: 0, points: 3 },
       { participant_id: 2, match_id: 1, pred_home: 2, pred_away: 0, points: 1.5 },
     ];
     const deltas = computePositionDeltas(participants, predictions, matches);
     expect(deltas.size).toBe(0);
+  });
+});
+
+describe("currentJornada", () => {
+  it("es J1 sin partidos o con todo por jugar", () => {
+    expect(currentJornada([])).toBe("J1");
+    expect(
+      currentJornada([makeMatch(1, "J1", false), makeMatch(2, "J2", false)])
+    ).toBe("J1");
+  });
+
+  it("es J2 cuando J1 está completa y J2 a medias", () => {
+    const matches = [
+      makeMatch(1, "J1", true),
+      makeMatch(2, "J2", true),
+      makeMatch(3, "J2", false),
+      makeMatch(4, "J3", false),
+    ];
+    expect(currentJornada(matches)).toBe("J2");
+  });
+
+  it("es J3 cuando todo terminó", () => {
+    const matches = [
+      makeMatch(1, "J1", true),
+      makeMatch(2, "J2", true),
+      makeMatch(3, "J3", true),
+    ];
+    expect(currentJornada(matches)).toBe("J3");
   });
 });

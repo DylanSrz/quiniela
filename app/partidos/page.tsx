@@ -1,4 +1,5 @@
 import { getMatches, getParticipants, getPredictions } from "@/lib/data";
+import { currentJornada } from "@/lib/standings";
 import MatchesView from "@/components/MatchesView";
 import LiveRefresh from "@/components/LiveRefresh";
 
@@ -24,6 +25,7 @@ export default async function PartidosPage() {
         matches={matches}
         participants={participants}
         predictions={predictions}
+        defaultJornada={currentJornada(matches)}
       />
     </main>
   );

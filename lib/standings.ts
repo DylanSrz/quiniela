@@ -1,3 +1,4 @@
+import { JORNADAS, type Jornada } from "./constants";
 import type { Match, Participant, Prediction, StandingRow } from "./types";
 
 // Calcula la tabla de posiciones a partir de participantes y pronósticos ya puntuados.
@@ -89,4 +90,15 @@ export function computePositionDeltas(
     if (prev !== undefined) deltas.set(r.participant.id, prev - i);
   });
   return deltas;
+}
+
+// Jornada "activa": la primera con partidos sin terminar (la que se está
+// jugando o está por jugarse). Si todo terminó, la última. Sirve como pestaña
+// por defecto en /partidos y /admin/resultados.
+export function currentJornada(matches: Match[]): Jornada {
+  if (matches.length === 0) return JORNADAS[0];
+  for (const j of JORNADAS) {
+    if (matches.some((m) => m.jornada === j && !m.finished)) return j;
+  }
+  return JORNADAS[JORNADAS.length - 1];
 }
