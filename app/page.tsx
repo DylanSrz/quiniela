@@ -1,10 +1,13 @@
 import Link from "next/link";
 import { getMatches, getParticipants, getPredictions } from "@/lib/data";
 import { computeStandings, computePositionDeltas } from "@/lib/standings";
+import { upcomingMatches, type UpcomingInfo } from "@/lib/schedule";
+import { flagFor } from "@/lib/teams";
+import { fmtDateTime, fmtTime } from "@/lib/format";
 import LiveRefresh from "@/components/LiveRefresh";
 import ShareButton from "@/components/ShareButton";
 import { MEDALS, SCORING } from "@/lib/constants";
-import type { StandingRow } from "@/lib/types";
+import type { Match, StandingRow } from "@/lib/types";
 
 export const revalidate = 30;
 
@@ -16,6 +19,7 @@ export default async function HomePage() {
   ]);
   const standings = computeStandings(participants, predictions);
   const deltas = computePositionDeltas(participants, predictions, matches);
+  const upcoming = upcomingMatches(matches, new Date());
   const jugados = matches.filter((m) => m.finished).length;
   const total = matches.length;
   const leader = standings[0];
@@ -40,6 +44,8 @@ export default async function HomePage() {
           <ShareButton text={shareText} />
         </div>
       </section>
+
+      <Upcoming info={upcoming} />
 
       {standings.length === 0 ? (
         <EmptyState />
@@ -131,6 +137,62 @@ function Podium({ standings }: { standings: StandingRow[] }) {
         </Link>
       ))}
     </div>
+  );
+}
+
+function MatchLine({ match, time }: { match: Match; time?: boolean }) {
+  return (
+    <Link
+      href="/partidos"
+      className="flex items-center gap-2 text-sm transition hover:text-gold"
+    >
+      {time && (
+        <span className="w-14 shrink-0 font-display text-xs text-muted">
+          {fmtTime(match.kickoff_utc)}
+        </span>
+      )}
+      <span className="flex-1 truncate text-right">
+        {match.home_team} {flagFor(match.home_team)}
+      </span>
+      <span className="text-xs text-muted">vs</span>
+      <span className="flex-1 truncate text-left">
+        {flagFor(match.away_team)} {match.away_team}
+      </span>
+    </Link>
+  );
+}
+
+// Partidos de hoy (o el próximo) para darle vida diaria a la home.
+function Upcoming({ info }: { info: UpcomingInfo }) {
+  if (info.kind === "none") return null;
+
+  if (info.kind === "today") {
+    return (
+      <section className="mb-6 rounded-2xl border border-grass/25 bg-surface p-4">
+        <h2 className="mb-2 text-xs uppercase tracking-wide text-grass">
+          ⚽ Hoy juegan
+        </h2>
+        <ul className="space-y-1.5">
+          {info.matches.map((m) => (
+            <li key={m.id}>
+              <MatchLine match={m} time />
+            </li>
+          ))}
+        </ul>
+      </section>
+    );
+  }
+
+  return (
+    <section className="mb-6 rounded-2xl border border-white/10 bg-surface p-4">
+      <h2 className="mb-2 text-xs uppercase tracking-wide text-muted">
+        Próximo partido
+      </h2>
+      <MatchLine match={info.match} />
+      <p className="mt-1.5 text-center text-xs text-muted">
+        {fmtDateTime(info.match.kickoff_utc)}
+      </p>
+    </section>
   );
 }
 
