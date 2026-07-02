@@ -74,6 +74,12 @@ export default function RootLayout({
                 Partidos
               </Link>
               <Link
+                href="/grupos"
+                className="rounded-md px-3 py-1.5 text-muted transition hover:bg-white/5 hover:text-white"
+              >
+                Grupos
+              </Link>
+              <Link
                 href="/comparar"
                 className="rounded-md px-3 py-1.5 text-muted transition hover:bg-white/5 hover:text-white"
               >
