@@ -10,10 +10,16 @@ type Props = {
   matches: Match[];
   participants: Participant[];
   predictions: Prediction[];
+  defaultJornada?: Jornada;
 };
 
-export default function MatchesView({ matches, participants, predictions }: Props) {
-  const [jornada, setJornada] = useState<Jornada>("J1");
+export default function MatchesView({
+  matches,
+  participants,
+  predictions,
+  defaultJornada,
+}: Props) {
+  const [jornada, setJornada] = useState<Jornada>(defaultJornada ?? "J1");
 
   // Index pronósticos por partido.
   const predsByMatch = useMemo(() => {
