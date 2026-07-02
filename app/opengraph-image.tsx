@@ -62,8 +62,9 @@ export default async function OpengraphImage() {
             }}
           >
             <div style={{ fontSize: 30 }}>⚽</div>
-            <div style={{ fontSize: 68, fontWeight: 700 }}>
-              Quiniela <span style={{ color: "#f5c542" }}>Hunters</span>
+            <div style={{ display: "flex", fontSize: 68, fontWeight: 700 }}>
+              <span>Quiniela&nbsp;</span>
+              <span style={{ color: "#f5c542" }}>Hunters</span>
             </div>
           </div>
           <div style={{ fontSize: 30, color: "#34d399", marginTop: 8 }}>
@@ -95,8 +96,16 @@ export default async function OpengraphImage() {
                 <div style={{ fontSize: 34 }}>{MEDALS[i]}</div>
                 <div style={{ fontSize: 40, marginTop: 4 }}>{row.emoji}</div>
                 <div style={{ fontSize: 24, marginTop: 6 }}>{row.name}</div>
-                <div style={{ fontSize: 36, fontWeight: 700, color: "#f5c542", marginTop: 4 }}>
-                  {fmtPts(row.points)} pts
+                <div
+                  style={{
+                    display: "flex",
+                    fontSize: 36,
+                    fontWeight: 700,
+                    color: "#f5c542",
+                    marginTop: 4,
+                  }}
+                >
+                  {fmtPts(row.points)}&nbsp;pts
                 </div>
               </div>
             ))
