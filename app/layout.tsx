@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist } from "next/font/google";
 import { Oswald } from "next/font/google";
 import Link from "next/link";
@@ -19,6 +19,11 @@ export const metadata: Metadata = {
   title: "Quiniela Hunters · Mundial 2026",
   description:
     "Quiniela privada de la fase de grupos del Mundial 2026 entre los Hunters.",
+};
+
+export const viewport: Viewport = {
+  themeColor: "#0a1410",
+  colorScheme: "dark",
 };
 
 export default function RootLayout({
