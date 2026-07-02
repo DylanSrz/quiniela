@@ -1,4 +1,5 @@
 import { login } from "./actions";
+import SubmitButton from "@/components/SubmitButton";
 
 export default async function LoginPage({
   searchParams,
@@ -38,12 +39,12 @@ export default async function LoginPage({
           <p className="mt-3 text-sm text-red-400">Contraseña incorrecta.</p>
         )}
 
-        <button
-          type="submit"
-          className="mt-6 w-full rounded-lg bg-gold px-4 py-2.5 font-semibold text-black transition hover:brightness-110"
+        <SubmitButton
+          pendingText="Verificando…"
+          className="mt-6 w-full rounded-lg bg-gold px-4 py-2.5 font-semibold text-black hover:brightness-110"
         >
           Entrar
-        </button>
+        </SubmitButton>
       </form>
     </main>
   );
