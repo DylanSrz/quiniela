@@ -3,6 +3,7 @@ import { Geist } from "next/font/google";
 import { Oswald } from "next/font/google";
 import Link from "next/link";
 import "./globals.css";
+import BottomNav from "@/components/BottomNav";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -61,30 +62,33 @@ export default function RootLayout({
               </span>
             </Link>
             <div className="flex items-center gap-1 text-sm">
-              <Link
-                href="/"
-                className="rounded-md px-3 py-1.5 text-muted transition hover:bg-white/5 hover:text-white"
-              >
-                Posiciones
-              </Link>
-              <Link
-                href="/partidos"
-                className="rounded-md px-3 py-1.5 text-muted transition hover:bg-white/5 hover:text-white"
-              >
-                Partidos
-              </Link>
-              <Link
-                href="/grupos"
-                className="rounded-md px-3 py-1.5 text-muted transition hover:bg-white/5 hover:text-white"
-              >
-                Grupos
-              </Link>
-              <Link
-                href="/comparar"
-                className="rounded-md px-3 py-1.5 text-muted transition hover:bg-white/5 hover:text-white"
-              >
-                Comparar
-              </Link>
+              {/* En móvil estas secciones viven en la barra inferior (BottomNav). */}
+              <div className="hidden items-center gap-1 sm:flex">
+                <Link
+                  href="/"
+                  className="rounded-md px-3 py-1.5 text-muted transition hover:bg-white/5 hover:text-white"
+                >
+                  Posiciones
+                </Link>
+                <Link
+                  href="/partidos"
+                  className="rounded-md px-3 py-1.5 text-muted transition hover:bg-white/5 hover:text-white"
+                >
+                  Partidos
+                </Link>
+                <Link
+                  href="/grupos"
+                  className="rounded-md px-3 py-1.5 text-muted transition hover:bg-white/5 hover:text-white"
+                >
+                  Grupos
+                </Link>
+                <Link
+                  href="/comparar"
+                  className="rounded-md px-3 py-1.5 text-muted transition hover:bg-white/5 hover:text-white"
+                >
+                  Comparar
+                </Link>
+              </div>
               <Link
                 href="/admin"
                 title="Panel de administrador"
@@ -102,6 +106,8 @@ export default function RootLayout({
         <footer className="mt-auto border-t border-white/10 px-4 py-6 text-center text-xs text-muted">
           Quiniela Hunters · Mundial FIFA 2026 · fase de grupos
         </footer>
+
+        <BottomNav />
       </body>
     </html>
   );
