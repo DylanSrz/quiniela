@@ -15,10 +15,27 @@ const oswald = Oswald({
   weight: ["500", "600", "700"],
 });
 
+const title = "Quiniela Hunters · Mundial 2026";
+const description =
+  "Quiniela privada de la fase de grupos del Mundial 2026 entre los Hunters.";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+
 export const metadata: Metadata = {
-  title: "Quiniela Hunters · Mundial 2026",
-  description:
-    "Quiniela privada de la fase de grupos del Mundial 2026 entre los Hunters.",
+  metadataBase: new URL(siteUrl),
+  title,
+  description,
+  openGraph: {
+    title,
+    description,
+    siteName: "Quiniela Hunters",
+    locale: "es_CO",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title,
+    description,
+  },
 };
 
 export const viewport: Viewport = {
