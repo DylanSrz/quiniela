@@ -8,6 +8,7 @@ const TABS = [
   { href: "/partidos", label: "Partidos", emoji: "⚽", exact: false },
   { href: "/grupos", label: "Grupos", emoji: "🌎", exact: false },
   { href: "/comparar", label: "Comparar", emoji: "⚔️", exact: false },
+  { href: "/estadisticas", label: "Stats", emoji: "📊", exact: false },
 ];
 
 // Barra de pestañas inferior para móvil (las secciones públicas). En sm+ se

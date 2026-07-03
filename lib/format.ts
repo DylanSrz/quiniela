@@ -25,3 +25,8 @@ export function fmtTime(iso: string): string {
 export function fmtDateTime(iso: string): string {
   return `${fmtDate(iso)} · ${fmtTime(iso)}`;
 }
+
+// 9 -> "9", 7.5 -> "7.5"
+export function fmtPts(p: number): string {
+  return p % 1 === 0 ? String(p) : p.toFixed(1);
+}

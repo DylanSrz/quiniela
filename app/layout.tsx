@@ -88,6 +88,12 @@ export default function RootLayout({
                 >
                   Comparar
                 </Link>
+                <Link
+                  href="/estadisticas"
+                  className="rounded-md px-3 py-1.5 text-muted transition hover:bg-white/5 hover:text-white"
+                >
+                  Stats
+                </Link>
               </div>
               <Link
                 href="/admin"
