@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { supabasePublic } from "@/lib/supabase";
+import { EXPECTED_PARTICIPANTS } from "@/lib/constants";
 
 export const dynamic = "force-dynamic";
 
@@ -23,7 +24,11 @@ export default async function AdminHome() {
   return (
     <div className="space-y-6">
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
-        <Stat label="Participantes" value={`${participants?.length ?? 0}`} sub="de 9" />
+        <Stat
+          label="Participantes"
+          value={`${participants?.length ?? 0}`}
+          sub={`de ${EXPECTED_PARTICIPANTS}`}
+        />
         <Stat label="Partidos jugados" value={`${finished}`} sub={`de ${totalMatches}`} />
         <Stat
           label="Pronósticos"
@@ -37,7 +42,7 @@ export default async function AdminHome() {
           href="/admin/participantes"
           emoji="👥"
           title="Participantes"
-          desc="Crear y editar los 9 perfiles"
+          desc={`Crear y editar los ${EXPECTED_PARTICIPANTS} perfiles`}
         />
         <ActionCard
           href="/admin/pronosticos"
