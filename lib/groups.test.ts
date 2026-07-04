@@ -68,4 +68,36 @@ describe("computeGroupTables", () => {
     ]);
     expect([...tables.keys()]).toEqual(["A", "D", "L"]);
   });
+
+  it("desempata por enfrentamiento directo cuando pts/dif/gf globales son idénticos", () => {
+    // Zebra y Alfa quedan exactamente empatados en pts/dif/gf (6/1/3 cada
+    // uno), pero Zebra le ganó a Alfa 2-1 en su enfrentamiento directo.
+    // El desempate alfabético (criterio anterior) pondría a Alfa primero;
+    // el enfrentamiento directo debe poner a Zebra primero.
+    const tables = computeGroupTables([
+      makeMatch("H", "Zebra", "Alfa", [2, 1]),
+      makeMatch("H", "Zebra", "Cuervo", [1, 0]),
+      makeMatch("H", "Dragon", "Zebra", [1, 0]),
+      makeMatch("H", "Alfa", "Cuervo", [1, 0]),
+      makeMatch("H", "Alfa", "Dragon", [1, 0]),
+      makeMatch("H", "Cuervo", "Dragon", [1, 1]),
+    ]);
+    const h = tables.get("H")!;
+    const [first, second] = h;
+    expect(first).toMatchObject({ team: "Zebra", pts: 6, dif: 1, gf: 3 });
+    expect(second).toMatchObject({ team: "Alfa", pts: 6, dif: 1, gf: 3 });
+  });
+
+  it("cae al criterio global si los empatados no se enfrentaron entre sí", () => {
+    // M y N nunca jugaron entre ellos (aún no se disputó ese partido);
+    // ambos quedan empatados en todo tras vencer a O por el mismo marcador.
+    // Sin partidos en común, el enfrentamiento directo no aporta nada y se
+    // cae al desempate global (aquí, ya empatado también, al nombre).
+    const tables = computeGroupTables([
+      makeMatch("I", "M", "O", [1, 0]),
+      makeMatch("I", "N", "O", [1, 0]),
+    ]);
+    const i = tables.get("I")!;
+    expect(i.slice(0, 2).map((r) => r.team)).toEqual(["M", "N"]);
+  });
 });
