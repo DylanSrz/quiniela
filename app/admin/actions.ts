@@ -15,6 +15,9 @@ async function ensureAdmin(): Promise<ActionResult | null> {
 function revalidateAll() {
   revalidatePath("/");
   revalidatePath("/partidos");
+  revalidatePath("/grupos");
+  revalidatePath("/comparar");
+  revalidatePath("/estadisticas");
   revalidatePath("/admin");
   revalidatePath("/admin/participantes");
   revalidatePath("/admin/resultados");
