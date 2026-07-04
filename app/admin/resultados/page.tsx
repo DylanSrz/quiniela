@@ -97,7 +97,10 @@ export default async function ResultadosPage({
             {m.finished && (
               <div className="mt-2 flex items-center justify-end gap-2">
                 <span className="text-xs text-exacto">✓ finalizado</span>
-                <ActionForm action={clearResult}>
+                <ActionForm
+                  action={clearResult}
+                  confirmMessage={`¿Revertir ${m.home_team} ${m.home_goals}-${m.away_goals} ${m.away_team}? Volverá a "por jugar".`}
+                >
                   <input type="hidden" name="match_id" value={m.id} />
                   <SubmitButton
                     pendingText="…"

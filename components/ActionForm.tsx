@@ -15,11 +15,15 @@ export default function ActionForm({
   children,
   className,
   resetOnSuccess = false,
+  confirmMessage,
 }: {
   action: ServerAction;
   children: React.ReactNode;
   className?: string;
   resetOnSuccess?: boolean;
+  // Si se pasa, pide confirmación (window.confirm) antes de enviar el
+  // formulario. Pensado para acciones destructivas (eliminar, revertir).
+  confirmMessage?: string;
 }) {
   const [state, formAction] = useActionState<ActionResult | null, FormData>(
     action,
@@ -31,8 +35,14 @@ export default function ActionForm({
     if (state?.ok && resetOnSuccess) ref.current?.reset();
   }, [state, resetOnSuccess]);
 
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    if (confirmMessage && !window.confirm(confirmMessage)) {
+      e.preventDefault();
+    }
+  }
+
   return (
-    <form ref={ref} action={formAction} className={className}>
+    <form ref={ref} action={formAction} onSubmit={handleSubmit} className={className}>
       {children}
       {state && (
         <p

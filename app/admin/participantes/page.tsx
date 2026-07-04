@@ -85,7 +85,10 @@ export default async function ParticipantesPage() {
                   Guardar
                 </SubmitButton>
               </ActionForm>
-              <ActionForm action={deleteParticipant}>
+              <ActionForm
+                action={deleteParticipant}
+                confirmMessage={`¿Eliminar a ${p.display_name}? También se borrarán sus pronósticos. Esta acción no se puede deshacer.`}
+              >
                 <input type="hidden" name="id" value={p.id} />
                 <SubmitButton
                   pendingText="…"
