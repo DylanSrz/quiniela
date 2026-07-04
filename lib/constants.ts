@@ -14,3 +14,6 @@ export const TIMEZONE = "America/Bogota";
 
 // Tope defensivo de goles aceptados al ingresar un resultado.
 export const MAX_GOALS = 99;
+
+// Cantidad de amigos esperada en la quiniela (solo referencial en el admin).
+export const EXPECTED_PARTICIPANTS = 9;
