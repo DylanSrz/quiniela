@@ -9,6 +9,7 @@ import {
   type Stat,
 } from "@/lib/stats";
 import LiveRefresh from "@/components/LiveRefresh";
+import ShareButton from "@/components/ShareButton";
 
 export const revalidate = 30;
 
@@ -116,10 +117,26 @@ export default async function EstadisticasPage() {
               <p className="mt-2 font-display text-lg font-bold text-gold">
                 {c.stat!.value}
               </p>
+              <div className="mt-3">
+                <ShareButton text={shareTextFor(c)} label="Compartir" />
+              </div>
             </section>
           ))}
         </div>
       )}
     </main>
   );
+}
+
+function shareTextFor(c: { emoji: string; title: string; stat: Stat | null }): string {
+  const stat = c.stat!;
+  const names = stat.entries
+    .map(
+      (e) =>
+        `${e.participant.avatar_emoji} ${e.participant.display_name}${
+          e.label ? ` (${e.label})` : ""
+        }`
+    )
+    .join(", ");
+  return `${c.emoji} ${c.title}: ${names} — ${stat.value}`;
 }

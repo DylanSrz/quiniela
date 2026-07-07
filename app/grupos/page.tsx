@@ -2,12 +2,14 @@ import { getMatches } from "@/lib/data";
 import { computeGroupTables } from "@/lib/groups";
 import { flagFor } from "@/lib/teams";
 import LiveRefresh from "@/components/LiveRefresh";
+import ShareButton from "@/components/ShareButton";
 
 export const revalidate = 30;
 
 export default async function GruposPage() {
   const matches = await getMatches();
   const tables = computeGroupTables(matches);
+  const jugados = matches.filter((m) => m.finished).length;
 
   return (
     <main className="mx-auto w-full max-w-3xl flex-1 px-4 py-6">
@@ -15,10 +17,18 @@ export default async function GruposPage() {
       <h1 className="mb-1 font-display text-3xl font-bold uppercase tracking-wide">
         Grupos
       </h1>
-      <p className="mb-5 text-sm text-muted">
-        Clasificación real del torneo según los resultados cargados. Los dos
-        primeros de cada grupo avanzan.
-      </p>
+      <div className="mb-5 flex items-center justify-between gap-3">
+        <p className="text-sm text-muted">
+          Clasificación real del torneo según los resultados cargados. Los dos
+          primeros de cada grupo avanzan.
+        </p>
+        {tables.size > 0 && (
+          <ShareButton
+            text={`🌎 Así van los grupos del Mundial 2026 (${jugados}/${matches.length} partidos jugados)`}
+            label="Compartir"
+          />
+        )}
+      </div>
 
       {tables.size === 0 ? (
         <div className="rounded-2xl border border-dashed border-white/15 bg-surface p-8 text-center">
