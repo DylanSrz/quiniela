@@ -73,10 +73,15 @@ export default async function EstadisticasPage() {
       {visibles.length === 0 ? (
         <div className="rounded-2xl border border-dashed border-white/15 bg-surface p-8 text-center">
           <p className="text-4xl">📊</p>
-          <p className="mt-3 font-medium">Aún no hay suficientes resultados.</p>
+          <p className="mt-3 font-medium">
+            {participants.length === 0
+              ? "Aún no hay participantes."
+              : "Aún no hay suficientes resultados."}
+          </p>
           <p className="mt-1 text-sm text-muted">
-            Cuando rueden los primeros partidos, aquí saldrán los héroes y las
-            víctimas.
+            {participants.length === 0
+              ? "El admin debe crear los perfiles primero."
+              : "Cuando rueden los primeros partidos, aquí saldrán los héroes y las víctimas."}
           </p>
         </div>
       ) : (

@@ -36,10 +36,18 @@ export default async function CompararPage({
         partido.
       </p>
 
-      {participants.length === 0 ? (
-        <p className="rounded-2xl border border-dashed border-white/15 bg-surface p-6 text-center text-sm text-muted">
-          Aún no hay participantes.
-        </p>
+      {participants.length < 2 ? (
+        <div className="rounded-2xl border border-dashed border-white/15 bg-surface p-8 text-center">
+          <p className="text-4xl">⚔️</p>
+          <p className="mt-3 font-medium">
+            {participants.length === 0
+              ? "Aún no hay participantes."
+              : "Hace falta al menos un participante más."}
+          </p>
+          <p className="mt-1 text-sm text-muted">
+            Comparar necesita 2 o más perfiles; el admin debe crearlos primero.
+          </p>
+        </div>
       ) : (
         <>
           <SelectorForm participants={participants} selectedIds={selectedIds} />

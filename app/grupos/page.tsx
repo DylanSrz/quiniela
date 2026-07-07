@@ -20,6 +20,16 @@ export default async function GruposPage() {
         primeros de cada grupo avanzan.
       </p>
 
+      {tables.size === 0 ? (
+        <div className="rounded-2xl border border-dashed border-white/15 bg-surface p-8 text-center">
+          <p className="text-4xl">🌎</p>
+          <p className="mt-3 font-medium">Aún no hay partidos cargados.</p>
+          <p className="mt-1 text-sm text-muted">
+            En cuanto el admin cargue el calendario, aquí aparece la
+            clasificación de cada grupo.
+          </p>
+        </div>
+      ) : (
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         {[...tables.entries()].map(([letter, rows]) => (
           <section
@@ -74,6 +84,7 @@ export default async function GruposPage() {
           </section>
         ))}
       </div>
+      )}
     </main>
   );
 }
