@@ -2,16 +2,18 @@
 
 import { useState } from "react";
 
-type Props = { text: string };
+type Props = { text: string; label?: string };
 
-// Comparte el ranking usando la hoja de compartir nativa (Web Share API,
-// típico en móvil / PWA); si no está disponible, abre WhatsApp Web; y como
-// último recurso copia el mensaje al portapapeles.
-export default function ShareButton({ text }: Props) {
+// Comparte contenido de la página (ranking, grupo, estadística o comparación)
+// usando la hoja de compartir nativa (Web Share API, típico en móvil / PWA);
+// si no está disponible, abre WhatsApp Web; y como último recurso copia el
+// mensaje al portapapeles. Comparte la URL actual completa (incluida la
+// query string), así los enlaces a /comparar preservan la selección (?p=).
+export default function ShareButton({ text, label = "Compartir ranking" }: Props) {
   const [copied, setCopied] = useState(false);
 
   async function share() {
-    const url = typeof window !== "undefined" ? window.location.origin : "";
+    const url = typeof window !== "undefined" ? window.location.href : "";
     const nav =
       typeof navigator !== "undefined"
         ? (navigator as Navigator & {
@@ -63,7 +65,7 @@ export default function ShareButton({ text }: Props) {
       className="inline-flex items-center gap-2 rounded-lg border border-grass/40 bg-grass/10 px-3 py-1.5 text-sm font-medium text-grass transition hover:bg-grass/20"
     >
       <span>{copied ? "✓" : "📲"}</span>
-      {copied ? "¡Copiado!" : "Compartir ranking"}
+      {copied ? "¡Copiado!" : label}
     </button>
   );
 }

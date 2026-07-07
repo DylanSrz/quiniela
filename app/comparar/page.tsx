@@ -4,6 +4,7 @@ import { computeStandings } from "@/lib/standings";
 import { flagFor } from "@/lib/teams";
 import { JORNADAS } from "@/lib/constants";
 import LiveRefresh from "@/components/LiveRefresh";
+import ShareButton from "@/components/ShareButton";
 import type { Match, Participant, Prediction } from "@/lib/types";
 
 export const revalidate = 30;
@@ -126,8 +127,19 @@ function Comparison({
     relevantPreds.map((p) => [`${p.participant_id}:${p.match_id}`, p])
   );
 
+  const leader = standings[0];
+  const shareText = `⚔️ Comparando a ${selected
+    .map((p) => p.display_name)
+    .join(" vs ")} — va liderando ${leader.participant.avatar_emoji} ${
+    leader.participant.display_name
+  } con ${leader.points} pts`;
+
   return (
     <div className="space-y-6">
+      <div className="flex items-center justify-end">
+        <ShareButton text={shareText} label="Compartir comparación" />
+      </div>
+
       <section className="overflow-hidden rounded-2xl border border-white/10 bg-surface">
         <table className="w-full text-sm">
           <thead>
