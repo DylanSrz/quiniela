@@ -50,16 +50,24 @@ export default async function ParticipantePage({
         ← Volver a posiciones
       </Link>
 
-      <header className="mt-3 flex items-center gap-3">
-        <span className="text-4xl">{participant.avatar_emoji}</span>
-        <div>
-          <h1 className="font-display text-2xl font-bold uppercase tracking-wide">
-            {participant.display_name}
-          </h1>
-          <p className="text-sm text-muted">
-            <span className="font-display text-lg font-bold text-gold">{total}</span> puntos totales
-          </p>
+      <header className="mt-3 flex items-center justify-between gap-3">
+        <div className="flex items-center gap-3">
+          <span className="text-4xl">{participant.avatar_emoji}</span>
+          <div>
+            <h1 className="font-display text-2xl font-bold uppercase tracking-wide">
+              {participant.display_name}
+            </h1>
+            <p className="text-sm text-muted">
+              <span className="font-display text-lg font-bold text-gold">{total}</span> puntos totales
+            </p>
+          </div>
         </div>
+        <Link
+          href={`/comparar?p=${participant.id}`}
+          className="inline-flex shrink-0 items-center gap-2 rounded-lg border border-grass/40 bg-grass/10 px-3 py-1.5 text-sm font-medium text-grass transition hover:bg-grass/20"
+        >
+          ⚔️ Comparar
+        </Link>
       </header>
 
       <section className="mt-5 rounded-2xl border border-white/10 bg-surface p-4">
